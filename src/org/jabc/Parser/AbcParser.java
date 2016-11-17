@@ -17,6 +17,6 @@ public class AbcParser
 
     public String getValue()
     {
-        return testValue;
+        return testValue + "test";
     }
 }

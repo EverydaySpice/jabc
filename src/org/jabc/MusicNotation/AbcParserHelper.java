@@ -1,4 +1,4 @@
-package com.schorrig.interactivesheet.MusicNotation;
+package org.jabc.musicnotation;
 
 /**
  * Created by Willi on 31.10.2016.

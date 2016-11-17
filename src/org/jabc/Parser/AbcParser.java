@@ -1,4 +1,8 @@
-package com.schorrig.interactivesheet.Parser.AbcParser;
+package org.jabc.parser;
+
+import org.jabc.musicnotation.*;
+import org.jabc.parser.grammar.AbcNotationBaseVisitor;
+import org.jabc.parser.grammar.AbcNotationParser;
 
 /**
  * Created by Willi on 30.10.2016.

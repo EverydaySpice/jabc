@@ -237,8 +237,9 @@ public class AbcNotationParser extends Parser {
 	}
 
 	public static class IdentifierContext extends ParserRuleContext {
-		public TerminalNode INT() { return getToken(AbcNotationParser.INT, 0); }
+		public Token identifierString;
 		public TerminalNode NEWLINE() { return getToken(AbcNotationParser.NEWLINE, 0); }
+		public TerminalNode INT() { return getToken(AbcNotationParser.INT, 0); }
 		public IdentifierContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -259,7 +260,7 @@ public class AbcNotationParser extends Parser {
 			setState(42);
 			match(T__0);
 			setState(43);
-			match(INT);
+			((IdentifierContext)_localctx).identifierString = match(INT);
 			setState(44);
 			match(NEWLINE);
 			}
@@ -276,8 +277,9 @@ public class AbcNotationParser extends Parser {
 	}
 
 	public static class TitleContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(AbcNotationParser.ID, 0); }
+		public Token titleString;
 		public TerminalNode NEWLINE() { return getToken(AbcNotationParser.NEWLINE, 0); }
+		public TerminalNode ID() { return getToken(AbcNotationParser.ID, 0); }
 		public TitleContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -298,7 +300,7 @@ public class AbcNotationParser extends Parser {
 			setState(46);
 			match(T__1);
 			setState(47);
-			match(ID);
+			((TitleContext)_localctx).titleString = match(ID);
 			setState(48);
 			match(NEWLINE);
 			}
@@ -315,6 +317,7 @@ public class AbcNotationParser extends Parser {
 	}
 
 	public static class MeasureContext extends ParserRuleContext {
+		public Token measureString;
 		public TerminalNode NEWLINE() { return getToken(AbcNotationParser.NEWLINE, 0); }
 		public TerminalNode ID() { return getToken(AbcNotationParser.ID, 0); }
 		public TerminalNode NOTE() { return getToken(AbcNotationParser.NOTE, 0); }
@@ -340,9 +343,10 @@ public class AbcNotationParser extends Parser {
 			setState(50);
 			match(T__2);
 			setState(51);
+			((MeasureContext)_localctx).measureString = _input.LT(1);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NOTE) | (1L << FRACTION) | (1L << ID))) != 0)) ) {
-			_errHandler.recoverInline(this);
+				((MeasureContext)_localctx).measureString = (Token)_errHandler.recoverInline(this);
 			} else {
 				consume();
 			}
@@ -362,8 +366,9 @@ public class AbcNotationParser extends Parser {
 	}
 
 	public static class LengthContext extends ParserRuleContext {
-		public TerminalNode FRACTION() { return getToken(AbcNotationParser.FRACTION, 0); }
+		public Token lengthString;
 		public TerminalNode NEWLINE() { return getToken(AbcNotationParser.NEWLINE, 0); }
+		public TerminalNode FRACTION() { return getToken(AbcNotationParser.FRACTION, 0); }
 		public LengthContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -384,7 +389,7 @@ public class AbcNotationParser extends Parser {
 			setState(54);
 			match(T__3);
 			setState(55);
-			match(FRACTION);
+			((LengthContext)_localctx).lengthString = match(FRACTION);
 			setState(56);
 			match(NEWLINE);
 			}
@@ -401,6 +406,7 @@ public class AbcNotationParser extends Parser {
 	}
 
 	public static class KeyContext extends ParserRuleContext {
+		public Token keyString;
 		public TerminalNode NEWLINE() { return getToken(AbcNotationParser.NEWLINE, 0); }
 		public TerminalNode ID() { return getToken(AbcNotationParser.ID, 0); }
 		public TerminalNode NOTE() { return getToken(AbcNotationParser.NOTE, 0); }
@@ -425,9 +431,10 @@ public class AbcNotationParser extends Parser {
 			setState(58);
 			match(T__4);
 			setState(59);
+			((KeyContext)_localctx).keyString = _input.LT(1);
 			_la = _input.LA(1);
 			if ( !(_la==NOTE || _la==ID) ) {
-			_errHandler.recoverInline(this);
+				((KeyContext)_localctx).keyString = (Token)_errHandler.recoverInline(this);
 			} else {
 				consume();
 			}

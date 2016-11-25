@@ -1,5 +1,7 @@
 package org.jabc.musicnotation;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import java.util.ArrayList;
 
 /**
@@ -67,5 +69,12 @@ public class Tune
     public void setTitle(String m_title)
     {
         this.m_title = m_title;
+    }
+
+    public void setStandardNoteLength(TerminalNode fraction)
+    {
+        int numerator = Integer.valueOf(fraction.getText().charAt(0));
+        int denominator = Integer.valueOf(fraction.getText().charAt(2));
+        m_standardNoteLength = new Fraction(numerator, denominator);
     }
 }

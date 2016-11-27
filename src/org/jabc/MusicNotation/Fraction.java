@@ -14,7 +14,7 @@ public class Fraction
         m_numerator = numerator;
     }
 
-    public int getNnumerator()
+    public int getNumerator()
     {
         return m_numerator;
     }
@@ -28,5 +28,24 @@ public class Fraction
     public String toString()
     {
         return String.valueOf(m_numerator) + "/" + String.valueOf(m_denominator);
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (other == null) return false;
+        if (other == this) return true;
+        if (!(other instanceof Fraction))return false;
+
+        Fraction otherFraction = (Fraction)other;
+        if (        otherFraction.getDenominator() == this.getDenominator()
+                ||  otherFraction.getNumerator() == this.getNumerator())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

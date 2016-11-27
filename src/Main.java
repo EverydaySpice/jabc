@@ -1,5 +1,5 @@
 
-import abc.notation.MusicElement;
+
 import org.antlr.v4.gui.TestRig;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -42,7 +42,7 @@ public class Main
             //System.out.println("TUNE TITLE: " + m_tune.getTitle());
 
             TestRig.main(new String[]{"org.jabc.parser.grammar.AbcNotation", "tune", "-gui"
-                    , "assets/example1.demo"});
+                    , inputFile});
 
 //            TestRig.main(new String[]{"org.jabc.parser.grammar.TestGrammar", "score", "-gui"
 //                    , "assets/test.test"});

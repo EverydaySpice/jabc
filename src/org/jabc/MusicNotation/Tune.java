@@ -9,26 +9,20 @@ import java.util.ArrayList;
  */
 public class Tune
 {
-    private String m_title;
+    private int m_identifier;
+    private final ArrayList<String> m_titles;
+    private String m_composer;
     private String m_key;
     private Fraction m_timeSignature;
     private Fraction m_standardNoteLength;
+    private int m_Tempo;
 
-    private final ArrayList<Bar> m_bars;
+    private final ArrayList<Voice> voices;
 
     public Tune()
     {
-        m_bars = new ArrayList<>();
-    }
-
-    public void addBar(Bar bar)
-    {
-        m_bars.add(bar);
-    }
-
-    public ArrayList<Bar> getBars()
-    {
-        return m_bars;
+        m_titles = new ArrayList<String>();
+        voices = new ArrayList<Voice>();
     }
 
     public Fraction getStandardNoteLength()
@@ -61,20 +55,48 @@ public class Tune
         this.m_key = m_key;
     }
 
-    public String getTitle()
+    public String getTitle(int index)
     {
-        return m_title;
+        return m_titles.get(index);
     }
 
-    public void setTitle(String m_title)
+    public ArrayList<Voice> getVoices()
     {
-        this.m_title = m_title;
+        return voices;
     }
 
-    public void setStandardNoteLength(TerminalNode fraction)
+    public ArrayList<String> getTitles()
     {
-        int numerator = Integer.valueOf(fraction.getText().charAt(0));
-        int denominator = Integer.valueOf(fraction.getText().charAt(2));
-        m_standardNoteLength = new Fraction(numerator, denominator);
+        return m_titles;
+    }
+
+    public int getIdentifier()
+    {
+        return m_identifier;
+    }
+
+    public void setIdentifier(int identifier)
+    {
+        this.m_identifier = m_identifier;
+    }
+
+    public String getComposer()
+    {
+        return m_composer;
+    }
+
+    public void setComposer(String composer)
+    {
+        this.m_composer = m_composer;
+    }
+
+    public int getTempo()
+    {
+        return m_Tempo;
+    }
+
+    public void setTempo(int m_Tempo)
+    {
+        this.m_Tempo = m_Tempo;
     }
 }

@@ -18,20 +18,23 @@ MULTIPLIER: INT;
 OCTAVE_UP: '\'';
 OCTAVE_DOWN: ',';
 
-Annotation: Delimiter
-            | MULTIPLIER
-            | OCTAVE_DOWN
-            | OCTAVE_UP;
-
+NOTE: [a-gA-G];
 SingleNote: WS+ NOTE;
-
 BeamNote: NOTE;
 
+//StartOfMultipleNotes: '[';
+//EndOfMultipleNotes: ']';
+
 BARLINE: (' ')* ('|' | '|]');
-NOTE: [a-gA-G];
+//SimpleBarline:                  '|';
+//ThinThikBarline:                '|]';
+//ThikThinBarline:                '[|';
+//ThinThinBarline:                '||';
+//StartOfRepeatedBarline:         '|:';
+//EndOfRepeatedBarline:           ':|';
+//StartAndEndOfRepeatedBarline:   '::';
 
 mode STRING_MODE;
 EXIT_NEWLINE: NEWLINE->mode(DEFAULT_MODE);
-//EXIT_WS: WS ->mode(DEFAULT_MODE);
 STRING: (ID | INT | WS)+;
 ID: [a-zA-Z]+;

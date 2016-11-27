@@ -81,16 +81,16 @@ public class AbcParser extends AbcNotationParserBaseVisitor<Tune>
         return null;
     }
 
-    @Override
-    public Tune visitTakt(AbcNotationParser.TaktContext ctx)
-    {
-
-        Bar bar = new Bar();
-        tune.addBar(bar);
-        currentBar = bar;
-        super.visitTakt(ctx);
-        return null;
-    }
+//    @Override
+//    public Tune visitTakt(AbcNotationParser.TaktContext ctx)
+//    {
+//
+//        Bar bar = new Bar();
+//        tune.addBar(bar);
+//        currentBar = bar;
+//        super.visitTakt(ctx);
+//        return null;
+//    }
 
 //    @Override
 //    public Tune visitSingleNote(AbcNotationParser.SingleNoteContext ctx)
@@ -145,7 +145,7 @@ public class AbcParser extends AbcNotationParserBaseVisitor<Tune>
 //    public Tune visitDelimiter(AbcNotationParser.DelimiterContext ctx)
 //    {
 //        int factor = Integer.valueOf(ctx.factor.getText());
-//        Fraction fraction = new Fraction(currentBeat.getDuration().getNnumerator(), currentBeat.getDuration().getDenominator() * factor);
+//        Fraction fraction = new Fraction(currentBeat.getDuration().getNumerator(), currentBeat.getDuration().getDenominator() * factor);
 //        currentBeat.setDuration(fraction);
 //        return super.visitDelimiter(ctx);
 //    }
@@ -154,7 +154,7 @@ public class AbcParser extends AbcNotationParserBaseVisitor<Tune>
 //    public Tune visitMultiplier(AbcNotationParser.MultiplierContext ctx)
 //    {
 //        int factor = Integer.valueOf(ctx.getText());
-//        Fraction fraction = new Fraction(currentBeat.getDuration().getNnumerator() * factor, currentBeat.getDuration().getDenominator());
+//        Fraction fraction = new Fraction(currentBeat.getDuration().getNumerator() * factor, currentBeat.getDuration().getDenominator());
 //        currentBeat.setDuration(fraction);
 //        return super.visitMultiplier(ctx);
 //    }

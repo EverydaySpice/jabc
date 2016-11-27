@@ -5,9 +5,8 @@ package org.jabc.musicnotation;
  */
 public class Note
 {
-    public static int[] INTERVAL = { 1,2,3,4,5,6,7}; // -1 symbolizes a rest.
-    private static final String[] tones = {"c", "d","e", "f", "g", "a", "b" };
-    public enum noteName  { A, B, C, D, E, F, G};
+    public final static int[] INTERVAL = { 1,2,3,4,5,6,7};
+    private final static String[] tones = {"c", "d","e", "f", "g", "a", "b" };
     private boolean m_sharp = false;
     private boolean m_flat = false;
     private int m_interval;

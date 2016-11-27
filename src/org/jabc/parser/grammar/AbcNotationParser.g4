@@ -3,11 +3,21 @@ parser grammar AbcNotationParser;
 options { tokenVocab=AbcNotationLexer; }
 
 // --->TUNE:
-tune: header score NEWLINE;
+tune: header score;
 score:(takt)+;
-takt: (note)* BARLINE;
+takt: (note)+ BARLINE;
 // >---END OF TUNE
 
+// --->BAR:
+//barline: SimpleBarline
+//       | ThinThikBarline
+//       | ThikThinBarline
+//       | ThinThinBarline
+//       | StartOfRepeatedBarline
+//       | EndOfRepeatedBarline
+//       | StartAndEndOfRepeatedBarline;
+
+// >---BAR
 // --->HEADER:
 header: identifier title optionalHeaderInfo*  key;
 

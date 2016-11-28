@@ -3,19 +3,28 @@ parser grammar AbcNotationParser;
 options { tokenVocab=AbcNotationLexer; }
 
 // --->TUNE:
-tune: header score;
+tune: header score NEWLINE?;
 score:(takt)+;
-takt: (note)+ BARLINE;
+takt: (note)+ endOfBar;
 // >---END OF TUNE
 
 // --->BAR:
-//barline: SimpleBarline
-//       | ThinThikBarline
-//       | ThikThinBarline
-//       | ThinThinBarline
-//       | StartOfRepeatedBarline
-//       | EndOfRepeatedBarline
-//       | StartAndEndOfRepeatedBarline;
+endOfBar: (WS)* barline;
+barline: simpleBarline
+       | thinThikBarline
+       | thikThinBarline
+       | thinThinBarline
+       | startOfRepeatedBarline
+       | endOfRepeatedBarline
+       | startAndEndOfRepeatedBarline;
+
+simpleBarline: VerticalBar;
+thinThinBarline: VerticalBar VerticalBar;
+thikThinBarline: SqaureBracketOpen VerticalBar;
+thinThikBarline: VerticalBar SquareBracketClosed;
+startOfRepeatedBarline: VerticalBar Colon;
+endOfRepeatedBarline: Colon VerticalBar;
+startAndEndOfRepeatedBarline: Colon Colon;
 
 // >---BAR
 // --->HEADER:
@@ -34,10 +43,10 @@ comment:        CommentSymbol       STRING      EXIT_NEWLINE;
 // >---END OF HEADER
 
 // --->NOTES:
-note: singleNote | beamNote;
+note: (singleNote | beamNote | multipleNotes);
 singleNote: SingleNote annotation*;
 beamNote: BeamNote annotation*;
-
+multipleNotes: WS* SqaureBracketOpen (singleNote | beamNote )+ SqaureBracketClosed;
 // Note annotations:
 annotation: delimeter
             | multiplier

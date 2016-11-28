@@ -18,21 +18,27 @@ MULTIPLIER: INT;
 OCTAVE_UP: '\'';
 OCTAVE_DOWN: ',';
 
-NOTE: [a-gA-G];
 SingleNote: WS+ NOTE;
 BeamNote: NOTE;
 
-//StartOfMultipleNotes: '[';
-//EndOfMultipleNotes: ']';
 
-BARLINE: (' ')* ('|' | '|]');
+
+NOTE: [a-gA-G];
 //SimpleBarline:                  '|';
-//ThinThikBarline:                '|]';
-//ThikThinBarline:                '[|';
+////ThinThikBarline:                '|]';
+////ThikThinBarline:                '[|';
 //ThinThinBarline:                '||';
 //StartOfRepeatedBarline:         '|:';
 //EndOfRepeatedBarline:           ':|';
 //StartAndEndOfRepeatedBarline:   '::';
+
+SqaureBracketOpen:     '[';
+SqaureBracketClosed:   ']';
+VerticalBar:           '|';
+Colon:                 ':';
+
+//StartOfMultipleNotes: '[' [^|];
+//EndOfMultipleNotes: [^|]']';
 
 mode STRING_MODE;
 EXIT_NEWLINE: NEWLINE->mode(DEFAULT_MODE);

@@ -2,10 +2,15 @@ parser grammar AbcNotationParser;
 
 options { tokenVocab=AbcNotationLexer; }
 
+// --->BASIC RULES:
+fraction: numerator=INT Slash denominator=INT;
+
 // --->TUNE:
-tune: header score NEWLINE?;
-score:(takt)+;
-takt: (note)+ endOfBar;
+voice: VoiceSymbol name=STRING EXIT_NEWLINE;
+voices: (voice score)+;
+tune: header (voices | score) EOF;
+score:(bar NEWLINE?)+;
+bar: (noteExpression)+ endOfBar;
 // >---END OF TUNE
 
 // --->BAR:
@@ -21,46 +26,64 @@ barline: simpleBarline
 simpleBarline: VerticalBar;
 thinThinBarline: VerticalBar VerticalBar;
 thikThinBarline: SqaureBracketOpen VerticalBar;
-thinThikBarline: VerticalBar SquareBracketClosed;
+thinThikBarline: VerticalBar SqaureBracketClosed;
 startOfRepeatedBarline: VerticalBar Colon;
 endOfRepeatedBarline: Colon VerticalBar;
 startAndEndOfRepeatedBarline: Colon Colon;
 
 // >---BAR
 // --->HEADER:
-header: identifier title optionalHeaderInfo*  key;
+header: identifier title+ optionalHeaderInfo*  key;
 
 optionalHeaderInfo: measure
                 |   length
-                |   comment;
+                |   notes
+                |   tempo
+                |   composer;
 
 identifier:     IdentifierSymbol    INT         NEWLINE;
-title:          TitleSymbol         STRING      EXIT_NEWLINE;
-measure:        MeasureSymbol       ((STRING EXIT_NEWLINE) | (FRACTION NEWLINE));
-length:         LengthSymbol        FRACTION    NEWLINE;
-key:            KeySymbol           STRING      EXIT_NEWLINE;
-comment:        CommentSymbol       STRING      EXIT_NEWLINE;
+title:          TitleSymbol  string=STRING EXIT_NEWLINE;
+measure:        MeterSymbol ((string=STRING EXIT_NEWLINE) | (fraction NEWLINE));
+length:         LengthSymbol        fraction    NEWLINE;
+key:            KeySymbol           string=STRING      EXIT_NEWLINE;
+notes:          NotesSymbol   string=STRING      EXIT_NEWLINE;
+tempo:          TempoSymbol   fraction WS* Equals WS* INT NEWLINE;
+composer:       ComposerSymbol   string=STRING      EXIT_NEWLINE;
 // >---END OF HEADER
 
 // --->NOTES:
-note: (singleNote | beamNote | multipleNotes);
-singleNote: SingleNote annotation*;
-beamNote: BeamNote annotation*;
-multipleNotes: WS* SqaureBracketOpen (singleNote | beamNote )+ SqaureBracketClosed;
-// Note annotations:
+note: accidental* (noBeamNote | beamNote) noteOctave* noteLength*;
+//note: (singleNote | beamNote | multipleNotes);
+noteExpression: multipleNotes | note;
+
+beamNote: noteString=NOTE;
+noBeamNote: WS+ noteString=NOTE;
+//singleNote: accidental* noteString=SingleNote annotation*;
+//beamNote: accidental* noteString=BeamNote annotation*;
+
+multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed;
+
 annotation: delimeter
             | multiplier
             | octaveUp
             | octaveDown;
 
-delimeter: Delimiter;
-multiplier: INT;
+noteLength: delimeter
+            | multiplier;
+
+noteOctave: octaveUp
+            | octaveDown;
+
+accidental: flat
+            | sharp
+            | natural;
+
+flat: Flat;
+sharp: Sharp;
+natural: Equals;
+
+delimeter: Slash denominator=INT;
+multiplier: (numerator=INT | fraction);
 octaveUp: OCTAVE_UP;
 octaveDown: OCTAVE_DOWN;
 // >---END OF NOTES
-
-
-
-
-
-

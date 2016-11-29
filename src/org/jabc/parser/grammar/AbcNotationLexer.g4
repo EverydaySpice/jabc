@@ -3,44 +3,45 @@ lexer grammar AbcNotationLexer;
 INT: [0-9]+;
 NEWLINE: '\r'? '\n';
 WS: ('\t' | ' ')+;
+COMMENT: '%' .*? {System.out.println("lc > " + getText());} NEWLINE ->skip;
+//FRACTION: INT '/' INT;
+//Delimiter: '/' INT;
+Slash: '/';
+IdentifierSymbol:   'X:';
+TitleSymbol:        'T:' ->mode(STRING_MODE);
+MeterSymbol:        'M:' ->mode(STRING_MODE);
+LengthSymbol:       'L:';
+KeySymbol:          'K:'  ->mode(STRING_MODE);
+NotesSymbol:        'N:'  ->mode(STRING_MODE);
+VoiceSymbol:        'V:'  ->mode(STRING_MODE);
+ComposerSymbol:     'C:'  ->mode(STRING_MODE);
+TempoSymbol:        'Q:';
 
-FRACTION: INT '/' INT;
-Delimiter: '/' INT;
-
-IdentifierSymbol:     'X:';
-TitleSymbol:          'T:' ->mode(STRING_MODE);
-MeasureSymbol:        'M:' ->mode(STRING_MODE);
-LengthSymbol:         'L:';
-KeySymbol:            'K:'  ->mode(STRING_MODE);
-CommentSymbol:        'N:'  ->mode(STRING_MODE);
 
 MULTIPLIER: INT;
-OCTAVE_UP: '\'';
-OCTAVE_DOWN: ',';
+OCTAVE_UP:      '\'';
+OCTAVE_DOWN:    ',';
+Flat:           '_';
+Sharp:          '^';
 
-SingleNote: WS+ NOTE;
-BeamNote: NOTE;
-
-
+//NoBeamNote: WS+ NOTE;
+//BeamNote: NOTE;
 
 NOTE: [a-gA-G];
-//SimpleBarline:                  '|';
-////ThinThikBarline:                '|]';
-////ThikThinBarline:                '[|';
-//ThinThinBarline:                '||';
-//StartOfRepeatedBarline:         '|:';
-//EndOfRepeatedBarline:           ':|';
-//StartAndEndOfRepeatedBarline:   '::';
-
-SqaureBracketOpen:     '[';
-SqaureBracketClosed:   ']';
-VerticalBar:           '|';
-Colon:                 ':';
-
-//StartOfMultipleNotes: '[' [^|];
-//EndOfMultipleNotes: [^|]']';
+Rest:                   'z';
+InvisibleRest:          'x';
+BarRest:                'Z';
+BracketOpen:            '(';
+BracketClosed:          ')';
+SqaureBracketOpen:      '[';
+SqaureBracketClosed:    ']';
+VerticalBar:            '|';
+Colon:                  ':';
+Equals:                 '=';
+Minus:                  '-';
+Backslash:              '\\';
 
 mode STRING_MODE;
 EXIT_NEWLINE: NEWLINE->mode(DEFAULT_MODE);
-STRING: (ID | INT | WS)+;
+STRING: (ID | INT | WS | [-_;,/.%$§"!?=&()] )+;
 ID: [a-zA-Z]+;

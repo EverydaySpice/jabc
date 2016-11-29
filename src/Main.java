@@ -22,7 +22,7 @@ public class Main
     public static void main(String args[])
     {
 
-        String inputFile = "assets/example1.demo";
+        String inputFile = "assets/1.abc";
 
         try
         {

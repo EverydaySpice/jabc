@@ -54,11 +54,10 @@ composer:       ComposerSymbol   string=STRING      EXIT_NEWLINE;
 // --->NOTES:
 note: accidental* (noBeamNote | beamNote) noteOctave* noteLength* tiedNote?;
 tiedNote: Minus;
-noteExpression: multipleNotes | note;
-
+noteExpression: (multipleNotes | note | rest);
+rest: Rest noteLength?;
 beamNote: noteString=NOTE;
 noBeamNote: WS+ noteString=NOTE;
-
 
 multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed tiedNote?;
 

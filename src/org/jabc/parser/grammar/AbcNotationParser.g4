@@ -42,7 +42,7 @@ optionalHeaderInfo: measure
                 |   tempo
                 |   composer;
 
-identifier:     IdentifierSymbol    INT         NEWLINE;
+identifier:     IdentifierSymbol    string=INT         NEWLINE;
 title:          TitleSymbol  string=STRING EXIT_NEWLINE;
 measure:        MeterSymbol ((string=STRING EXIT_NEWLINE) | (fraction NEWLINE));
 length:         LengthSymbol        WS* fraction    NEWLINE;
@@ -55,22 +55,22 @@ composer:       ComposerSymbol   string=STRING      EXIT_NEWLINE;
 // --->NOTES and muscial Expressions:
 
 musicalExpression: (multipleNotes | note | rest);
-note: accidental* (noteExpression) noteOctave* noteLength* tiedNote?;
+note: accidental (noteExpression) noteOctave noteLength tiedNote?;
 multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed tiedNote?;
-rest: Rest noteLength?;
+rest: Rest noteLength;
 noteExpression: noBeamNote | beamNote;
 beamNote: noteString=NOTE;
 noBeamNote: WS+ noteString=NOTE;
 
-noteLength: delimeter
-            | multiplier;
+noteLength: (delimeter
+            | multiplier)?;
 
-noteOctave: octaveUp
-            | octaveDown;
+noteOctave: (octaveUp
+            | octaveDown)*;
 
-accidental: flat
+accidental: (flat
             | sharp
-            | natural;
+            | natural)*;
 
 flat: Flat;
 sharp: Sharp;

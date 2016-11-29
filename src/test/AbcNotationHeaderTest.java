@@ -19,8 +19,8 @@ public class AbcNotationHeaderTest
 
     @Test
     public void TestTitle() {
-        String title1 = tune.getTitle(0);
-        String title2 = tune.getTitle(1);
+        String title1 = tune.getHeader().getTitle(0);
+        String title2 = tune.getHeader().getTitle(1);
         assertEquals(title1, "Song for a guy");
         assertEquals(title2, "Sample tune - abcm2ps (voices.abc)");
     }
@@ -35,35 +35,35 @@ public class AbcNotationHeaderTest
 
     @Test
     public void TestKey() {
-        String key = tune.getKey();
+        String key = tune.getHeader().getKey();
         assertEquals("C", key);
     }
     @Test
     public void TestStandardNoteLength() {
         Fraction fraction = new Fraction(1,8);
-        Fraction tuneFraction = tune.getStandardNoteLength();
+        Fraction tuneFraction = tune.getHeader().getStandardNoteLength();
         assertEquals(fraction, tuneFraction);
     }
     @Test
     public void TestIdentifier() {
-        int identifier = tune.getIdentifier();
+        int identifier = tune.getHeader().getIdentifier();
         assertEquals(1, identifier);
     }
     @Test
     public void TestComposer() {
-        String composer = tune.getComposer();
+        String composer = tune.getHeader().getComposer();
         assertEquals(composer, "Elton John");
     }
     @Test
     public void TestMeasure() {
         Fraction measure = new Fraction(4,4);
-        Fraction tuneMeasure = tune.getTimeSignature();
+        Fraction tuneMeasure = tune.getHeader().getTimeSignature();
         assertEquals(measure, measure);
     }
     @Test
     public void TestTempo() {
         int tempo = 128;
-        assertEquals(tempo, tune.getTempo());
+        assertEquals(tempo, tune.getHeader().getTempo());
     }
 
 

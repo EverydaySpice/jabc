@@ -4,6 +4,8 @@ import org.antlr.v4.gui.TestRig;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.jabc.musicnotation.Fraction;
+import org.jabc.musicnotation.Note;
 import org.jabc.musicnotation.Tune;
 import org.jabc.parser.AbcParser;
 import org.jabc.parser.grammar.AbcNotationLexer;

@@ -24,13 +24,12 @@ public class AbcParser extends AbcNotationParserBaseVisitor<Tune>
         return tune;
     }
 
-
     @Override
     public Tune visitHeader(AbcNotationParser.HeaderContext ctx)
     {
         super.visitHeader(ctx);
-        tune.setStandardNoteLength(new Fraction(1,4));
-        tune.setTimeSignature(new Fraction(4,4));
+//        tune.setStandardNoteLength(new Fraction(1,4));
+//        tune.setTimeSignature(new Fraction(4,4));
         return null;
     }
 

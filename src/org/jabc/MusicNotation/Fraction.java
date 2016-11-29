@@ -48,4 +48,11 @@ public class Fraction
             return false;
         }
     }
+
+    public Fraction multiply(Fraction m_standardNoteLength)
+    {
+        this.m_numerator*= m_standardNoteLength.getNumerator();
+        this.m_denominator *= m_standardNoteLength.getDenominator();
+        return this;
+    }
 }

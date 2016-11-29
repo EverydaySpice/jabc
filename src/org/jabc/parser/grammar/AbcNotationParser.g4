@@ -55,10 +55,10 @@ composer:       ComposerSymbol   string=STRING      EXIT_NEWLINE;
 // --->NOTES and muscial Expressions:
 
 musicalExpression: (multipleNotes | note | rest);
-note: accidental* (noBeamNote | beamNote) noteOctave* noteLength* tiedNote?;
+note: accidental* (noteExpression) noteOctave* noteLength* tiedNote?;
 multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed tiedNote?;
 rest: Rest noteLength?;
-
+noteExpression: noBeamNote | beamNote;
 beamNote: noteString=NOTE;
 noBeamNote: WS+ noteString=NOTE;
 

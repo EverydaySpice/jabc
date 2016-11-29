@@ -7,7 +7,9 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.jabc.musicnotation.Tune;
 import org.jabc.parser.AbcParser;
 import org.jabc.parser.grammar.AbcNotationLexer;
+import org.jabc.parser.grammar.AbcNotationListener;
 import org.jabc.parser.grammar.AbcNotationParser;
+import org.jabc.parser.grammar.AbcNotationVisitor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,13 +30,17 @@ public class Main
         {
             InputStream is = new FileInputStream(inputFile);
             //is = new FileInputStream(inputFile);
-//            ANTLRInputStream input = new ANTLRInputStream(is);
-//            AbcNotationLexer lexer = new AbcNotationLexer(input);
-//            CommonTokenStream tokens = new CommonTokenStream(lexer);
-//            AbcNotationParser parser = new AbcNotationParser(tokens);
-//            ParseTree tree = parser.tune(); // parse; start at prog <label id="code.tour.main.6"/>
-            //AbcParser abcParser = new AbcParser();
-            //abcParser.visit(tree);
+            ANTLRInputStream input = new ANTLRInputStream(is);
+            AbcNotationLexer lexer = new AbcNotationLexer(input);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            AbcNotationParser parser = new AbcNotationParser(tokens);
+
+            //parser.addParseListener(new AbcNotationListener());
+            //parser.tune();
+
+            ParseTree tree = parser.tune(); // parse; start at prog <label id="code.tour.main.6"/>
+            AbcNotationVisitor abcParser = new AbcNotationVisitor();
+            abcParser.visit(tree);
 
            // System.out.println(tree.toStringTree(parser)); // print tree as text <label id="code.tour.main.7"/>
 

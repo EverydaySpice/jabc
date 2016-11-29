@@ -3,7 +3,7 @@ package org.jabc.musicnotation;
 /**
  * Created by Willi on 30.10.2016.
  */
-public class Note
+public class Note implements MusicalExpression
 {
     public final static int[] INTERVAL = { 1,2,3,4,5,6,7};
     private final static String[] tones = {"c", "d","e", "f", "g", "a", "b" };

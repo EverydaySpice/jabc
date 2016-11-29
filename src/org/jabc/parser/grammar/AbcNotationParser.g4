@@ -10,7 +10,7 @@ voice: VoiceSymbol name=STRING EXIT_NEWLINE;
 voices: (voice score)+ ;
 tune: header (voices | score) NEWLINE? EOF;
 score:(bar NEWLINE? suppresScoreLinebreak?)+ ;
-bar: (noteExpression)+ endOfBar;
+bar: WS* (musicalExpression)+ endOfBar;
 // >---END OF TUNE
 
 // --->BAR:
@@ -32,6 +32,7 @@ endOfRepeatedBarline: Colon VerticalBar;
 startAndEndOfRepeatedBarline: Colon Colon;
 suppresScoreLinebreak: Backslash NEWLINE;
 // >---BAR
+
 // --->HEADER:
 header: identifier title+ optionalHeaderInfo*  key;
 
@@ -44,27 +45,22 @@ optionalHeaderInfo: measure
 identifier:     IdentifierSymbol    INT         NEWLINE;
 title:          TitleSymbol  string=STRING EXIT_NEWLINE;
 measure:        MeterSymbol ((string=STRING EXIT_NEWLINE) | (fraction NEWLINE));
-length:         LengthSymbol        fraction    NEWLINE;
+length:         LengthSymbol        WS* fraction    NEWLINE;
 key:            KeySymbol           string=STRING      EXIT_NEWLINE;
 notes:          NotesSymbol   string=STRING      EXIT_NEWLINE;
-tempo:          TempoSymbol   fraction WS* Equals WS* INT NEWLINE;
+tempo:          TempoSymbol   WS* fraction WS* Equals WS* INT NEWLINE;
 composer:       ComposerSymbol   string=STRING      EXIT_NEWLINE;
 // >---END OF HEADER
 
-// --->NOTES:
+// --->NOTES and muscial Expressions:
+
+musicalExpression: (multipleNotes | note | rest);
 note: accidental* (noBeamNote | beamNote) noteOctave* noteLength* tiedNote?;
-tiedNote: Minus;
-noteExpression: (multipleNotes | note | rest);
+multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed tiedNote?;
 rest: Rest noteLength?;
+
 beamNote: noteString=NOTE;
 noBeamNote: WS+ noteString=NOTE;
-
-multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed tiedNote?;
-
-annotation: delimeter
-            | multiplier
-            | octaveUp
-            | octaveDown;
 
 noteLength: delimeter
             | multiplier;
@@ -79,6 +75,7 @@ accidental: flat
 flat: Flat;
 sharp: Sharp;
 natural: Equals;
+tiedNote: Minus;
 
 delimeter: Slash denominator=INT;
 multiplier: (numerator=INT | fraction);

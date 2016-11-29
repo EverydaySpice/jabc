@@ -16,7 +16,6 @@ VoiceSymbol:        'V:'  ->mode(STRING_MODE);
 ComposerSymbol:     'C:'  ->mode(STRING_MODE);
 TempoSymbol:        'Q:';
 
-
 MULTIPLIER: INT;
 OCTAVE_UP:      '\'';
 OCTAVE_DOWN:    ',';

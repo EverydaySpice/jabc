@@ -7,9 +7,9 @@ fraction: numerator=INT Slash denominator=INT;
 
 // --->TUNE:
 voice: VoiceSymbol name=STRING EXIT_NEWLINE;
-voices: (voice score)+;
-tune: header (voices | score) EOF;
-score:(bar NEWLINE?)+;
+voices: (voice score)+ ;
+tune: header (voices | score) NEWLINE? EOF;
+score:(bar NEWLINE? suppresScoreLinebreak?)+ ;
 bar: (noteExpression)+ endOfBar;
 // >---END OF TUNE
 
@@ -30,7 +30,7 @@ thinThikBarline: VerticalBar SqaureBracketClosed;
 startOfRepeatedBarline: VerticalBar Colon;
 endOfRepeatedBarline: Colon VerticalBar;
 startAndEndOfRepeatedBarline: Colon Colon;
-
+suppresScoreLinebreak: Backslash NEWLINE;
 // >---BAR
 // --->HEADER:
 header: identifier title+ optionalHeaderInfo*  key;
@@ -52,16 +52,15 @@ composer:       ComposerSymbol   string=STRING      EXIT_NEWLINE;
 // >---END OF HEADER
 
 // --->NOTES:
-note: accidental* (noBeamNote | beamNote) noteOctave* noteLength*;
-//note: (singleNote | beamNote | multipleNotes);
+note: accidental* (noBeamNote | beamNote) noteOctave* noteLength* tiedNote?;
+tiedNote: Minus;
 noteExpression: multipleNotes | note;
 
 beamNote: noteString=NOTE;
 noBeamNote: WS+ noteString=NOTE;
-//singleNote: accidental* noteString=SingleNote annotation*;
-//beamNote: accidental* noteString=BeamNote annotation*;
 
-multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed;
+
+multipleNotes: WS* SqaureBracketOpen (note)+ SqaureBracketClosed tiedNote?;
 
 annotation: delimeter
             | multiplier

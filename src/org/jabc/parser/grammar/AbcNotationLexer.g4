@@ -4,8 +4,7 @@ INT: [0-9]+;
 NEWLINE: '\r'? '\n';
 WS: ('\t' | ' ')+;
 COMMENT: '%' .*? {System.out.println("lc > " + getText());} NEWLINE ->skip;
-//FRACTION: INT '/' INT;
-//Delimiter: '/' INT;
+
 Slash: '/';
 IdentifierSymbol:   'X:';
 TitleSymbol:        'T:' ->mode(STRING_MODE);
@@ -23,9 +22,6 @@ OCTAVE_UP:      '\'';
 OCTAVE_DOWN:    ',';
 Flat:           '_';
 Sharp:          '^';
-
-//NoBeamNote: WS+ NOTE;
-//BeamNote: NOTE;
 
 NOTE: [a-gA-G];
 Rest:                   'z';

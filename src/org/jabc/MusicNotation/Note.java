@@ -5,22 +5,60 @@ package org.jabc.musicnotation;
  */
 public class Note implements MusicalExpression
 {
-    public final static int[] INTERVAL = { 1,2,3,4,5,6,7};
-    private final static String[] tones = {"c", "d","e", "f", "g", "a", "b" };
-    private boolean m_sharp = false;
-    private boolean m_flat = false;
-    private int m_interval;
+    public enum Accidental {
+        NATURAL(0),
+        FLAT(-1),
+        DOUBLE_FLAT(-2),
+        SHARP(1),
+        DOUBLE_SHARP(2);
+        private int interval;
+        Accidental(int interval)
+        {
+            this.interval = interval;
+        }
+        public int getInterval()
+        {
+            return interval;
+        }
+    }
+
+    public enum Interval
+    {
+        C(1), D(3), E(5), F(6), G(8), A(10), B(12);
+        private int interval;
+        Interval(int interval)
+        {
+            this.interval = interval;
+        }
+        public int getInterval()
+        {
+            return interval;
+        }
+    }
+
+    private Interval m_interval;
+    private Accidental m_accidental;
     private int m_octave;
     private Fraction m_duration;
 
-    public Note(int interval, int octave, Fraction duration)
+    public Note(String note, Fraction duration)
     {
-        m_interval= interval;
-        m_octave = octave;
+        m_accidental = Accidental.NATURAL;
+
+        if (Character.isUpperCase(note.charAt(0)))
+        {
+            m_octave = 4;
+        }
+        else
+        {
+            m_octave = 5;
+        }
+
+        m_interval= Interval.valueOf(note.toUpperCase());
         m_duration = duration;
     }
 
-    public void setInterval(int interval)
+    public void setInterval(Interval interval)
     {
         m_interval = interval;
     }
@@ -32,14 +70,23 @@ public class Note implements MusicalExpression
     {
         return m_octave;
     }
+
     public int getInterval()
     {
-        return m_interval;
+        return (m_interval.getInterval() + m_accidental.getInterval());
     }
 
+    @Override
     public String toString()
     {
-        return tones[m_interval-1] + m_octave;
+        String noteString = "";
+        if (m_accidental != Accidental.NATURAL)
+        {
+            noteString += m_accidental.name();
+        }
+        noteString += m_interval.name();
+        noteString += m_octave;
+        return noteString;
     }
 
     public Fraction getDuration()
@@ -52,23 +99,13 @@ public class Note implements MusicalExpression
         this.m_duration = m_duration;
     }
 
-    public boolean isSharp()
+    public String getAccidental()
     {
-        return m_sharp;
+        return m_accidental.name();
     }
 
-    public boolean isFlat()
+    public void setAccidental(Accidental accidental)
     {
-        return m_flat;
-    }
-
-    public void setSharp(boolean b)
-    {
-         m_sharp = b;
-    }
-
-    public void setFlat(boolean b)
-    {
-        m_flat = b;
+        this.m_accidental = accidental;
     }
 }

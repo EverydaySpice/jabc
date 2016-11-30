@@ -9,7 +9,6 @@ import org.jabc.musicnotation.Note;
 import org.jabc.musicnotation.Tune;
 import org.jabc.parser.AbcParser;
 import org.jabc.parser.grammar.AbcNotationLexer;
-import org.jabc.parser.grammar.AbcNotationListener;
 import org.jabc.parser.grammar.AbcNotationParser;
 import org.jabc.parser.grammar.AbcNotationVisitor;
 

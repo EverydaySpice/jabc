@@ -34,17 +34,11 @@ suppresScoreLinebreak: Backslash NEWLINE;
 // >---BAR
 
 // --->HEADER:
-header: identifier title+ optionalHeaderInfo*  key;
-
-optionalHeaderInfo: measure
-                |   length
-                |   notes
-                |   tempo
-                |   composer;
+header: identifier title+ (meter| length| notes| tempo| composer)* key;
 
 identifier:     IdentifierSymbol    string=INT         NEWLINE;
 title:          TitleSymbol  string=STRING EXIT_NEWLINE;
-measure:        MeterSymbol ((string=STRING EXIT_NEWLINE) | (fraction NEWLINE));
+meter:          MeterSymbol ((string=STRING EXIT_NEWLINE) | (fraction NEWLINE));
 length:         LengthSymbol        WS* fraction    NEWLINE;
 key:            KeySymbol           string=STRING      EXIT_NEWLINE;
 notes:          NotesSymbol   string=STRING      EXIT_NEWLINE;

@@ -38,5 +38,5 @@ Backslash:              '\\';
 
 mode STRING_MODE;
 EXIT_NEWLINE: NEWLINE->mode(DEFAULT_MODE);
-STRING: (ID | INT | WS | [-_;,/.%$§"!?=&()] )+;
+STRING: (ID | INT | WS | [|-_;,/.%$§"!?=&()] )+;
 ID: [a-zA-Z]+;

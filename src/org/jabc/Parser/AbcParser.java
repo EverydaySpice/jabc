@@ -1,6 +1,9 @@
 package org.jabc.parser;
 
-import org.jabc.musicnotation.*;
+import org.jabc.musicnotation.expression.Note;
+import org.jabc.musicnotation.structure.Bar;
+import org.jabc.musicnotation.structure.Beat;
+import org.jabc.musicnotation.structure.Tune;
 import org.jabc.parser.grammar.AbcNotationParserBaseVisitor;
 import org.jabc.parser.grammar.AbcNotationParser;
 

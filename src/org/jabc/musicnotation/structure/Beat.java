@@ -1,4 +1,7 @@
-package org.jabc.musicnotation;
+package org.jabc.musicnotation.structure;
+
+import org.jabc.musicnotation.expression.MusicalExpression;
+import org.jabc.musicnotation.tools.Fraction;
 
 import java.util.ArrayList;
 
@@ -7,23 +10,23 @@ import java.util.ArrayList;
  */
 public class Beat
 {
-    private ArrayList<Note> m_notes;
+    private ArrayList<MusicalExpression> m_expressions;
     private Fraction m_duration;
 
     public Beat(Fraction duration)
     {
-        m_notes = new ArrayList<>();
+        m_expressions = new ArrayList<>();
         m_duration = duration;
     }
 
-    public void addNote(Note note)
+    public void addNote(MusicalExpression m)
     {
-        m_notes.add(note);
+        m_expressions.add(m);
     }
 
-    public ArrayList<Note> getNotes()
+    public ArrayList<MusicalExpression> getNotes()
     {
-        return m_notes;
+        return m_expressions;
     }
 
     public Fraction getDuration()

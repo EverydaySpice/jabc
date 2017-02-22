@@ -1,4 +1,4 @@
-package org.jabc.musicnotation;
+package org.jabc.musicnotation.structure;
 
 import java.util.ArrayList;
 

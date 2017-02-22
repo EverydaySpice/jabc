@@ -1,49 +1,31 @@
-package org.jabc.musicnotation;
+package org.jabc.musicnotation.expression;
+
+import org.jabc.musicnotation.expression.MusicalExpression;
+import org.jabc.musicnotation.tools.Accidental;
+import org.jabc.musicnotation.tools.Fraction;
+import org.jabc.musicnotation.tools.Interval;
 
 /**
  * Created by Willi on 30.10.2016.
  */
 public class Note implements MusicalExpression
 {
-    public enum Accidental {
-        NATURAL(0),
-        FLAT(-1),
-        DOUBLE_FLAT(-2),
-        SHARP(1),
-        DOUBLE_SHARP(2);
-        private int interval;
-        Accidental(int interval)
-        {
-            this.interval = interval;
-        }
-        public int getInterval()
-        {
-            return interval;
-        }
-    }
-
-    public enum Interval
+    @Override
+    public ExpressionType getType()
     {
-        C(1), D(3), E(5), F(6), G(8), A(10), B(12);
-        private int interval;
-        Interval(int interval)
-        {
-            this.interval = interval;
-        }
-        public int getInterval()
-        {
-            return interval;
-        }
+        return m_type;
     }
 
     private Interval m_interval;
     private Accidental m_accidental;
     private int m_octave;
     private Fraction m_duration;
+    private ExpressionType m_type;
 
     public Note(String note, Fraction duration)
     {
         m_accidental = Accidental.NATURAL;
+        m_type = ExpressionType.NOTE;
 
         if (Character.isUpperCase(note.charAt(0)))
         {

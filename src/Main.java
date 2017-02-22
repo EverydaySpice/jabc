@@ -4,18 +4,10 @@ import org.antlr.v4.gui.TestRig;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.jabc.musicnotation.Fraction;
-import org.jabc.musicnotation.Note;
-import org.jabc.musicnotation.Tune;
-import org.jabc.parser.AbcParser;
 import org.jabc.parser.grammar.AbcNotationLexer;
 import org.jabc.parser.grammar.AbcNotationParser;
-import org.jabc.parser.grammar.AbcNotationVisitor;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Created by Willi on 17.11.2016.
@@ -25,13 +17,15 @@ public class Main
     public static void main(String args[])
     {
 
-        String inputFile = "assets/3.abc";
+        String inputFile = "assets/2.abc";
 
         try
         {
             InputStream is = new FileInputStream(inputFile);
+            Reader r = new InputStreamReader(is, "utf-8");
+
             //is = new FileInputStream(inputFile);
-            ANTLRInputStream input = new ANTLRInputStream(is);
+            ANTLRInputStream input = new ANTLRInputStream(r);
             AbcNotationLexer lexer = new AbcNotationLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             AbcNotationParser parser = new AbcNotationParser(tokens);
@@ -40,8 +34,11 @@ public class Main
             //parser.tune();
 
             ParseTree tree = parser.tune(); // parse; start at prog <label id="code.tour.main.6"/>
-            AbcNotationVisitor abcParser = new AbcNotationVisitor();
-            abcParser.visit(tree);
+            //AbcNotationVisitor abcParser = new AbcNotationVisitor();
+            //abcParser.visit(tree);
+            //Tune tune = abcParser.getTune();
+            //System.out.println(tune.getHeader().getComposer());
+
 
            // System.out.println(tree.toStringTree(parser)); // print tree as text <label id="code.tour.main.7"/>
 
@@ -85,7 +82,5 @@ public class Main
         //System.out.print("Title n°10 is " + aTune.getTitles[0]);
         // and the name of its composer.
         //System.out.println(" and has been composed by " + aTune.getComposer());
-
-
     }
 }

@@ -1,4 +1,7 @@
-package org.jabc.musicnotation;
+package org.jabc.musicnotation.structure;
+
+import org.jabc.musicnotation.expression.Tempo;
+import org.jabc.musicnotation.tools.Fraction;
 
 import java.util.ArrayList;
 
@@ -10,7 +13,7 @@ public class TuneHeader
     private String m_key;
     private Fraction m_timeSignature;
     private Fraction m_standardNoteLength;
-    private int m_Tempo;
+    private Tempo m_Tempo;
 
     public TuneHeader()
     {
@@ -82,12 +85,12 @@ public class TuneHeader
         this.m_composer = composer;
     }
 
-    public int getTempo()
+    public Tempo getTempo()
     {
         return m_Tempo;
     }
 
-    public void setTempo(int tempo)
+    public void setTempo(Tempo tempo)
     {
         this.m_Tempo = tempo;
     }

@@ -1,7 +1,4 @@
-package org.jabc.musicnotation;
-
-import java.util.ArrayList;
-import java.util.Collection;
+package org.jabc.musicnotation.tools;
 
 /**
  * Created by Willi on 29.11.2016.
@@ -54,6 +51,5 @@ public enum Key
     {
         return intervalList[noteInterval];
     }
-
 
 }

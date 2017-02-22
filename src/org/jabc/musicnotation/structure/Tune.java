@@ -1,10 +1,7 @@
-package org.jabc.musicnotation;
+package org.jabc.musicnotation.structure;
 
 import java.util.ArrayList;
 
-/**
- * Created by Willi on 30.10.2016.
- */
 public class Tune
 {
     private final ArrayList<Voice> voices;

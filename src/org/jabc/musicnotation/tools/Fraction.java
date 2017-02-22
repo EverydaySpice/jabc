@@ -1,4 +1,4 @@
-package org.jabc.musicnotation;
+package org.jabc.musicnotation.tools;
 
 /**
  * Created by Willi on 30.10.2016.
@@ -54,5 +54,10 @@ public class Fraction
         this.m_numerator*= m_standardNoteLength.getNumerator();
         this.m_denominator *= m_standardNoteLength.getDenominator();
         return this;
+    }
+
+    public float getRational()
+    {
+        return (float) m_numerator / m_denominator;
     }
 }

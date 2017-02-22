@@ -1,4 +1,6 @@
-package org.jabc.musicnotation;
+package org.jabc.musicnotation.structure;
+
+import org.jabc.musicnotation.structure.Bar;
 
 import java.util.ArrayList;
 
@@ -10,9 +12,8 @@ public class Voice
     private String name;
     private final ArrayList<Bar> m_bars;
 
-    public Voice(String name)
+    public Voice()
     {
-        this.name = name;
         m_bars = new ArrayList<>();
     }
     public void addBar(Bar bar)

@@ -1,5 +1,6 @@
 package org.jabc.musicnotation.structure;
 
+import org.jabc.musicnotation.expression.Meter;
 import org.jabc.musicnotation.expression.Tempo;
 import org.jabc.musicnotation.tools.Fraction;
 
@@ -11,7 +12,7 @@ public class TuneHeader
     private final ArrayList<String> m_titles;
     private String m_composer;
     private String m_key;
-    private Fraction m_timeSignature;
+    private Meter m_timeSignature;
     private Fraction m_standardNoteLength;
     private Tempo m_Tempo;
 
@@ -30,12 +31,12 @@ public class TuneHeader
         this.m_standardNoteLength = standardNoteLength;
     }
 
-    public Fraction getTimeSignature()
+    public Meter getTimeSignature()
     {
         return m_timeSignature;
     }
 
-    public void setTimeSignature(Fraction timeSignature)
+    public void setTimeSignature(Meter timeSignature)
     {
         this.m_timeSignature = timeSignature;
     }

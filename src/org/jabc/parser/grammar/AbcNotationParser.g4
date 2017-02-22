@@ -82,7 +82,6 @@ accidental: (flat
 slurStart: WS? BracketOpen;
 slurEnd:   WS? BracketClosed;
 
-// wip
 inlineField: (meterChange | lengthChange);
 meterChange: SquareBracketOpen meter SquareBracketClosed;
 lengthChange: SquareBracketOpen length SquareBracketClosed;

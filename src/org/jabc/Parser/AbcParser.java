@@ -106,7 +106,7 @@ public class AbcParser extends AbcNotationParserBaseVisitor<Tune>
 //        {
 //            AbcParserHelper.parseNote(noteName, note);
 //            currentNote = note;
-//            beat.addNote(note);
+//            beat.addExpression(note);
 //        } catch (Exception e)
 //        {
 //            e.printStackTrace();
@@ -127,7 +127,7 @@ public class AbcParser extends AbcNotationParserBaseVisitor<Tune>
 //        {
 //            AbcParserHelper.parseNote(noteName, note);
 //            currentNote = note;
-//            beat.addNote(note);
+//            beat.addExpression(note);
 //        } catch (Exception e)
 //        {
 //            e.printStackTrace();

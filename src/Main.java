@@ -74,7 +74,7 @@ public class Main
 //        Tune aTune = book.getTune(1);
 //        String title = aTune.getTitles()[0];
 //        System.out.println(title);
-//        aTune.getNotes();
+//        aTune.getExpressions();
 //        Tune.Music music = aTune.getMusic();
 //        MusicElement musicElement = music.getElementAt(0);
 //        System.out.println(musicElement);

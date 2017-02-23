@@ -12,10 +12,12 @@ public class Voice
     private String name;
     private final ArrayList<Bar> m_bars;
 
-    public Voice()
+    public Voice(String voiceName, ArrayList<Bar> bars)
     {
-        m_bars = new ArrayList<>();
+        this.name = voiceName;
+        this.m_bars = bars;
     }
+
     public void addBar(Bar bar)
     {
         m_bars.add(bar);

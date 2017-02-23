@@ -22,6 +22,7 @@ public interface MusicalExpression
         {
             return type;
         }
+
     };
 
     ExpressionType getType();

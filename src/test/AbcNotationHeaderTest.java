@@ -93,8 +93,8 @@ public class AbcNotationHeaderTest
     @Test
     public void TestMeasure() {
         Fraction measure = new Fraction(4,4);
-        Fraction tuneMeasure = tune.getHeader().getTimeSignature();
-        assertEquals(measure, measure);
+        Fraction tuneMeasure = tune.getHeader().getTimeSignature().beat;
+        assertEquals(tuneMeasure, measure);
     }
     @Test
     public void TestTempo()

@@ -19,12 +19,12 @@ public class Beat
         m_duration = duration;
     }
 
-    public void addNote(MusicalExpression m)
+    public void addExpression(MusicalExpression m)
     {
         m_expressions.add(m);
     }
 
-    public ArrayList<MusicalExpression> getNotes()
+    public ArrayList<MusicalExpression> getExpressions()
     {
         return m_expressions;
     }

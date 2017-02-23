@@ -2,13 +2,14 @@ package org.jabc.musicnotation.expression;
 
 import org.jabc.musicnotation.expression.MusicalExpression;
 import org.jabc.musicnotation.tools.Accidental;
+import org.jabc.musicnotation.tools.DurationExpression;
 import org.jabc.musicnotation.tools.Fraction;
 import org.jabc.musicnotation.tools.Interval;
 
 /**
  * Created by Willi on 30.10.2016.
  */
-public class Note implements MusicalExpression
+public class Note implements MusicalExpression, DurationExpression
 {
     @Override
     public ExpressionType getType()

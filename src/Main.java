@@ -30,9 +30,6 @@ public class Main
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             AbcNotationParser parser = new AbcNotationParser(tokens);
 
-            //parser.addParseListener(new AbcNotationListener());
-            //parser.tune();
-
             ParseTree tree = parser.tune(); // parse; start at prog <label id="code.tour.main.6"/>
             //AbcNotationVisitor abcParser = new AbcNotationVisitor();
             //abcParser.visit(tree);
@@ -58,29 +55,6 @@ public class Main
             e.printStackTrace();
 
         }
-//
-//        File abcFile = new File (inputFile);
-//        TuneBook book = null;
-//        try
-//        {
-//            book = new TuneBook(abcFile);
-//        } catch (FileNotFoundException e)
-//        {
-//            e.printStackTrace();
-//        }
-//        int tunesNb = book.size();
-//        System.out.println("Nb of tunes in tutorial.abc : " + tunesNb);
-//        // now retrieve the tune with reference number "10"
-//        Tune aTune = book.getTune(1);
-//        String title = aTune.getTitles()[0];
-//        System.out.println(title);
-//        aTune.getExpressions();
-//        Tune.Music music = aTune.getMusic();
-//        MusicElement musicElement = music.getElementAt(0);
-//        System.out.println(musicElement);
-        // display its title
-        //System.out.print("Title n°10 is " + aTune.getTitles[0]);
-        // and the name of its composer.
-        //System.out.println(" and has been composed by " + aTune.getComposer());
+
     }
 }

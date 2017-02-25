@@ -5,9 +5,6 @@ import org.jabc.musicnotation.tools.Fraction;
 
 import java.util.ArrayList;
 
-/**
- * Created by Willi on 30.10.2016.
- */
 public class Beat
 {
     private ArrayList<MusicalExpression> m_expressions;

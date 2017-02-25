@@ -4,9 +4,7 @@ import org.jabc.musicnotation.structure.Bar;
 
 import java.util.ArrayList;
 
-/**
- * Created by Willi on 27.11.2016.
- */
+
 public class Voice
 {
     private String name;

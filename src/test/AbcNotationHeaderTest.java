@@ -96,6 +96,7 @@ public class AbcNotationHeaderTest
         Fraction tuneMeasure = tune.getHeader().getTimeSignature().beat;
         assertEquals(tuneMeasure, measure);
     }
+
     @Test
     public void TestTempo()
     {

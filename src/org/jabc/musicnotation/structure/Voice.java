@@ -1,5 +1,6 @@
 package org.jabc.musicnotation.structure;
 
+import org.jabc.musicnotation.expression.Note;
 import org.jabc.musicnotation.structure.Bar;
 
 import java.util.ArrayList;
@@ -35,4 +36,5 @@ public class Voice
     {
         this.name = name;
     }
+
 }

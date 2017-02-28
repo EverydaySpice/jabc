@@ -1,5 +1,7 @@
 package org.jabc.musicnotation.structure;
 
+import org.jabc.musicnotation.expression.Note;
+
 import java.util.ArrayList;
 
 public class Tune
@@ -27,4 +29,5 @@ public class Tune
     {
         return voices;
     }
+
 }

@@ -11,9 +11,6 @@ import org.jabc.parser.grammar.AbcNotationVisitor;
 
 import java.io.*;
 
-/**
- * Created by Willi on 17.11.2016.
- */
 public class Main
 {
     public static void main(String args[])

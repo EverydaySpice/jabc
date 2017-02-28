@@ -1,6 +1,7 @@
 package org.jabc.musicnotation.structure;
 
 import org.jabc.musicnotation.expression.MusicalExpression;
+import org.jabc.musicnotation.expression.Note;
 import org.jabc.musicnotation.tools.Fraction;
 
 import java.util.ArrayList;

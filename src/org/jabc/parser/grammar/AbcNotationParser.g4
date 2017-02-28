@@ -54,7 +54,7 @@ composer:       ComposerSymbol   string      ;
 tempo:          TempoSymbol WS? (fractionTempo | stringTempo | integerTempo) WS* endOfLine;
 fractionTempo:  stringQuotation? (WS? fraction)+ WS? Equals WS? speed=INT WS? stringQuotation?;
 stringTempo:    stringQuotation;
-stringQuotation: QuotationMark string;
+stringQuotation: string;
 integerTempo:    stringQuotation? speed=INT stringQuotation?;
 
 // >---END OF HEADER
@@ -82,7 +82,7 @@ accidental: (flat
 slurStart: WS? BracketOpen;
 slurEnd:   WS? BracketClosed;
 
-inlineField: (meterChange | lengthChange);
+inlineField: (meterChange | lengthChange | keyChange | tempoChange);
 meterChange: SquareBracketOpen meter SquareBracketClosed;
 lengthChange: SquareBracketOpen length SquareBracketClosed;
 keyChange: SquareBracketOpen key SquareBracketClosed?;

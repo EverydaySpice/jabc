@@ -140,6 +140,29 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     }
 
     @Override
+    public ArrayList<MusicalExpression> visitSlurStart(AbcNotationParser.SlurStartContext ctx)
+    {
+        String decorationString = (ctx.BracketOpen().getText());
+
+        Decoration decoration = new Decoration(decorationString);
+        ArrayList<MusicalExpression> musicalExpressions =  new ArrayList<>(1);
+        musicalExpressions.add(decoration);
+        return musicalExpressions;
+    }
+
+    @Override
+    public ArrayList<MusicalExpression> visitSlurEnd(AbcNotationParser.SlurEndContext ctx)
+    {
+        String decorationString = (ctx.BracketClosed().getText());
+
+        Decoration decoration = new Decoration(decorationString);
+        ArrayList<MusicalExpression> musicalExpressions =  new ArrayList<>(1);
+        musicalExpressions.add(decoration);
+        return musicalExpressions;
+    }
+
+
+    @Override
     public String visitVoiceInfo(AbcNotationParser.VoiceInfoContext ctx)
     {
         return ctx.text.getText();
@@ -215,6 +238,41 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
         tempo.setAnnotation(tempoAnnotation);
 
         return tempo;
+    }
+
+    @Override
+    public String visitKeyChange(AbcNotationParser.KeyChangeContext ctx)
+    {
+        return ctx.key().getText();
+    }
+
+    @Override
+    public String visitLengthChange(AbcNotationParser.LengthChangeContext ctx)
+    {
+        return ctx.length().getText();
+    }
+
+    @Override
+    public String visitTempoChange(AbcNotationParser.TempoChangeContext ctx)
+    {
+        return ctx.tempo().getText();
+    }
+
+    @Override
+    public String visitMeterChange(AbcNotationParser.MeterChangeContext ctx)
+    {
+        return ctx.meter().getText();
+    }
+
+    @Override
+    public Object visitInlineField(AbcNotationParser.InlineFieldContext ctx)
+    {
+        String decorationString = (String) visitChildren(ctx);
+
+        Decoration decoration = new Decoration(decorationString.substring(1, decorationString.length()-1));
+        ArrayList<MusicalExpression> musicalExpressions =  new ArrayList<>(1);
+        musicalExpressions.add(decoration);
+        return musicalExpressions;
     }
 
     @Override
@@ -365,8 +423,17 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     @Override
     public Fraction visitDelimeter(AbcNotationParser.DelimeterContext ctx)
     {
-        int denominator = Integer.valueOf(ctx.denominator.getText());
-        return new Fraction(1, denominator);
+        if (ctx.denominator != null)
+        {
+            int denominator = Integer.valueOf(ctx.denominator.getText());
+            return new Fraction(1, denominator);
+        }
+        else
+        {
+            return new Fraction(1, 2);
+        }
+
+
     }
 
     @Override

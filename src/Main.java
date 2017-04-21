@@ -16,8 +16,8 @@ public class Main
     public static void main(String args[])
     {
 
-        String inputFile = "assets/2.abc";
-
+        //String inputFile = "assets/1.abc";
+        String inputFile = "assets/example1.demo";
         try
         {
             InputStream is = new FileInputStream(inputFile);

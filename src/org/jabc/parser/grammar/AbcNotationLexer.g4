@@ -23,7 +23,7 @@ Flat:           '_';
 Sharp:          '^';
 
 NOTE: [a-gA-G];
-Rest:                   'z' | 'x';
+Rest:                   'z';
 InvisibleRest:          'x';
 BarRest:                'Z';
 BracketOpen:            '(';
@@ -35,10 +35,20 @@ Colon:                  ':';
 Equals:                 '=';
 Minus:                  '-';
 Backslash:              '\\';
-QuotationMark:          '"' ->mode(STRING_MODE);
+Quotationmark:          '"' ->mode(STRING_MODE);
 
-Decoration:             '!' [a-zA-Z0-9().+<>]* '!';
-
+Decoration:             ('!' [a-zA-Z0-9().+<>]* '!') |
+                        '.'  |
+                        '~'  |
+                        'H'  |
+                        'L'  |
+                        'M'  |
+                        'O'  |
+                        'P'  |
+                        'S'  |
+                        'T'  |
+                        'u'  |
+                        'v'  ;
 
 mode STRING_MODE;
 //QuotationEnd: '"'->mode(DEFAULT_MODE);

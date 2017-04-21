@@ -245,6 +245,12 @@ public interface AbcNotationParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDecoration(AbcNotationParser.DecorationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#decorationExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDecorationExpression(AbcNotationParser.DecorationExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link AbcNotationParser#noteLength}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -22,7 +22,6 @@ public enum Key
     C_Flat("Cb",   -1 ,-1 ,-1 ,-1 ,-1 ,-1 ,-1);
 
     private String name;
-    private boolean Flats;
     private int[] intervalList;
 
     public static Key getKey(String s)

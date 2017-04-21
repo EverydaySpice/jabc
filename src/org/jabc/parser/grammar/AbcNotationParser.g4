@@ -15,7 +15,7 @@ bar: WS* (musicalExpression)+ endOfBar;
 // >---END OF TUNE
 
 // --->BAR:
-endOfBar: (WS)* barline;
+endOfBar: WS* barline;
 barline: simpleBarline
        | thinThikBarline
        | thikThinBarline
@@ -54,21 +54,22 @@ composer:       ComposerSymbol   string      ;
 tempo:          TempoSymbol WS? (fractionTempo | stringTempo | integerTempo) WS* endOfLine;
 fractionTempo:  stringQuotation? (WS? fraction)+ WS? Equals WS? speed=INT WS? stringQuotation?;
 stringTempo:    stringQuotation;
-stringQuotation: string;
+stringQuotation: Quotationmark string;
 integerTempo:    stringQuotation? speed=INT stringQuotation?;
 
 // >---END OF HEADER
 
 // --->NOTES and muscial Expressions:
 
-musicalExpression: (inlineField | slurStart | slurEnd | multipleNotes | note | rest | decoration);
-note: accidental? (noteExpression) noteOctave noteLength tiedNote?;
-multipleNotes: WS* SquareBracketOpen (note)+ SquareBracketClosed tiedNote?;
-rest: WS? Rest noteLength WS?;
+musicalExpression: (inlineField | slurStart | slurEnd | multipleNotes | note | rest );
+note: decoration? accidental? noteExpression noteOctave noteLength tiedNote?;
+multipleNotes: decorationExpression? WS* SquareBracketOpen (note)+ SquareBracketClosed tiedNote?;
+rest: WS? (Rest | InvisibleRest) noteLength WS?;
 noteExpression: noBeamNote | beamNote;
 beamNote: noteString=NOTE;
 noBeamNote: WS+ noteString=NOTE;
 decoration: decorationName=Decoration;
+decorationExpression: decorationName=Decoration;
 noteLength: (delimeter
             | multiplier)?;
 

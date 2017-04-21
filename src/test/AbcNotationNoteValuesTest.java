@@ -3,12 +3,16 @@ package test;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.jabc.musicnotation.expression.MusicalExpression;
+import org.jabc.musicnotation.expression.Rest;
 import org.jabc.musicnotation.structure.Bar;
 import org.jabc.musicnotation.structure.Voice;
+import org.jabc.musicnotation.tools.Accidental;
 import org.jabc.musicnotation.tools.Fraction;
 import org.jabc.musicnotation.expression.Note;
 import org.jabc.musicnotation.structure.Tune;
-import org.jabc.musicnotation.tools.Interval;
+import org.jabc.musicnotation.tools.Pitch;
+import org.jabc.musicnotation.tools.Key;
 import org.jabc.parser.grammar.AbcNotationLexer;
 import org.jabc.parser.grammar.AbcNotationParser;
 import org.jabc.parser.grammar.AbcNotationVisitor;
@@ -56,25 +60,27 @@ public class AbcNotationNoteValuesTest
         AbcNotationVisitor abcParser = new AbcNotationVisitor();
         abcParser.visit(tree);
         tune = abcParser.getTune();
+
+        Pitch a = Pitch.A;
+        Accidental sharp = Accidental.SHARP;
+        Key key = Key.D;
+        int interval = a.getInterval() + key.getIntervalFor(a.ordinal()) + sharp.getInterval();
+        System.out.println(interval);
     }
 
     @Test
     public void testFirstBarRightHand() {
         Bar bar = tune.getVoices().get(0).getBars().get(0);
         Note note1 = (Note) bar.getBeats().get(0).getExpressions().get(0); // should be C duration: whole Note
-        Note note2 = (Note) bar.getBeats().get(0).getExpressions().get(1); // should be E
 
         Fraction duration = note1.getDuration();
-        Fraction duration2 = note2.getDuration();
-        float ratio = (float) duration.getNumerator() / duration.getDenominator();
-        float ratio2 = (float) duration2.getNumerator() / duration2.getDenominator();
-        assertEquals(ratio, 1.0f, 0.0f);
-        assertEquals(ratio2, 1.0f, 0.0f);
 
-        assertEquals(note1.getInterval(), Interval.C.getInterval());
+        float ratio = (float) duration.getNumerator() / duration.getDenominator();
+
+        assertEquals(ratio, 1.0f, 0.0f);
+
+        assertEquals(note1.getInterval(), Pitch.C.getInterval());
         assertEquals(note1.getOctave(), 4);
-        assertEquals(note2.getInterval(), Interval.E.getInterval());
-        assertEquals(note2.getOctave(), 4);
     }
 
     @Test
@@ -89,52 +95,89 @@ public class AbcNotationNoteValuesTest
     @Test
     public void testThirdBarRightHand() {
         Bar bar = tune.getVoices().get(0).getBars().get(2);
-        Note note1 = (Note) bar.getBeats().get(0).getExpressions().get(1); // should be B duration: 3/8
-        Note note2 = (Note) bar.getBeats().get(0).getExpressions().get(2); // should be E
 
-        Note note3 = (Note) bar.getBeats().get(1).getExpressions().get(0); // should be B duration: 1/8
-        Note note4 = (Note) bar.getBeats().get(1).getExpressions().get(1); // should be D
+        //zE FG- GEC2
+        Rest rest = (Rest) bar.getBeats().get(0).getExpressions().get(0); // Rest with duration 1/8
+        Note note1 = (Note) bar.getBeats().get(1).getExpressions().get(0); // should be E duration: 1/8
+        Note note2 = (Note) bar.getBeats().get(2).getExpressions().get(0); // should be F duration: 1/8
 
-        Note note5 = (Note) bar.getBeats().get(2).getExpressions().get(0); // should be B duration: 4/8
-        Note note6 = (Note) bar.getBeats().get(2).getExpressions().get(1); // should be D
+        Note note3 = (Note) bar.getBeats().get(3).getExpressions().get(0); // should be G duration: 1/8
+        Note note4 = (Note) bar.getBeats().get(4).getExpressions().get(0); // should be G duration: 1/8
 
-        Fraction duration = note1.getDuration();
-        Fraction duration2 = note2.getDuration();
-        float ratio = (float) duration.getNumerator() / duration.getDenominator();
-        float ratio2 = (float) duration2.getNumerator() / duration2.getDenominator();
-        assertEquals(ratio, 3.f / 8.f, 0.0f);
-        assertEquals(ratio2,  3.f / 8.f, 0.0f);
+        Note note5 = (Note) bar.getBeats().get(5).getExpressions().get(0); // should be E duration: 1/8
+        Note note6 = (Note) bar.getBeats().get(6).getExpressions().get(0); // should be C duration: 2/8
 
-        Fraction duration3 = note3.getDuration();
-        Fraction duration4 = note4.getDuration();
-        float ratio3 = (float) duration3.getNumerator() / duration3.getDenominator();
-        float ratio4 = (float) duration4.getNumerator() / duration4.getDenominator();
-        assertEquals(ratio3, 1.f / 8.f, 0.0f);
-        assertEquals(ratio4,  1.f / 8.f, 0.0f);
+        // Check duration
+        assertEquals(rest.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note1.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note2.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note3.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note4.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note5.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note6.getDuration().getRational(),  2.f / 8.f, 0.0f);
 
-        Fraction duration5 = note5.getDuration();
-        Fraction duration6 = note6.getDuration();
-        float ratio5 = (float) duration5.getNumerator() / duration5.getDenominator();
-        float ratio6 = (float) duration6.getNumerator() / duration6.getDenominator();
-        assertEquals(ratio5, 4.f / 8.f, 0.0f);
-        assertEquals(ratio6,  4.f / 8.f, 0.0f);
+        // Check pitch
+        assertEquals(rest.getType(), MusicalExpression.ExpressionType.REST);
 
-        assertEquals(note1.getInterval(), Interval.B.getInterval());
-        assertEquals(note1.getOctave(), 3);
-        assertEquals(note2.getInterval(), Interval.E.getInterval());
+        assertEquals(note1.getInterval(), Pitch.E.getInterval());
+        assertEquals(note1.getOctave(), 4);
+
+        assertEquals(note2.getInterval(), Pitch.F.getInterval());
         assertEquals(note2.getOctave(), 4);
 
-        assertEquals(note3.getInterval(), Interval.B.getInterval());
-        assertEquals(note3.getOctave(), 3);
-        assertEquals(note4.getInterval(), Interval.D.getInterval());
+        assertEquals(note3.getInterval(), Pitch.G.getInterval());
+        assertEquals(note3.getOctave(), 4);
+
+        assertEquals(note4.getInterval(), Pitch.G.getInterval());
         assertEquals(note4.getOctave(), 4);
 
-        assertEquals(note5.getInterval(), Interval.B.getInterval());
-        assertEquals(note5.getOctave(), 3);
-        assertEquals(note6.getInterval(), Interval.D.getInterval());
+        assertEquals(note5.getInterval(), Pitch.E.getInterval());
+        assertEquals(note5.getOctave(), 4);
+
+        assertEquals(note6.getInterval(), Pitch.C.getInterval());
         assertEquals(note6.getOctave(), 4);
 
     }
 
+    @Test
+    public void testFirstBarLeftHand() {
+        Bar bar = tune.getVoices().get(1).getBars().get(0);
+
+        Note note1 = (Note) bar.getBeats().get(0).getExpressions().get(0); // should be C duration: 3/8
+        Note note12 = (Note) bar.getBeats().get(0).getExpressions().get(1); // should be G duration: 3/8
+
+        Note note2 = (Note) bar.getBeats().get(1).getExpressions().get(0); // should be C# duration: 1/8
+        Note note22 = (Note) bar.getBeats().get(1).getExpressions().get(1); // should be Gb duration: 1/8
+
+        Note note3 = (Note) bar.getBeats().get(2).getExpressions().get(0); // should be C duration: 4/8
+        Note note32 = (Note) bar.getBeats().get(2).getExpressions().get(1); // should be Gb duration: 4/8
+
+        // Check duration
+        assertEquals(note1.getDuration().getRational(),  3.f / 8.f, 0.0f);
+        assertEquals(note12.getDuration().getRational(),  3.f / 8.f, 0.0f);
+        assertEquals(note2.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note22.getDuration().getRational(),  1.f / 8.f, 0.0f);
+        assertEquals(note3.getDuration().getRational(),  4.f / 8.f, 0.0f);
+        assertEquals(note32.getDuration().getRational(),  4.f / 8.f, 0.0f);
+
+        // Check pitch
+        assertEquals(note1.getInterval(), Pitch.C.getInterval());
+        assertEquals(note1.getOctave(), 3);
+
+        assertEquals(note12.getInterval(), Pitch.G.getInterval());
+        assertEquals(note12.getOctave(), 3);
+
+        assertEquals(note2.getInterval(), Pitch.C.getInterval()+1);
+        assertEquals(note2.getOctave(), 3);
+
+        assertEquals(note22.getInterval(), Pitch.G.getInterval()-1);
+        assertEquals(note22.getOctave(), 3);
+
+        assertEquals(note3.getInterval(), Pitch.C.getInterval());
+        assertEquals(note3.getOctave(), 3);
+
+        assertEquals(note32.getInterval(), Pitch.G.getInterval());
+        assertEquals(note32.getOctave(), 3);
+    }
 
 }

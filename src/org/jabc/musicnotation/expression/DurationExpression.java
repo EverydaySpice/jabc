@@ -1,4 +1,6 @@
-package org.jabc.musicnotation.tools;
+package org.jabc.musicnotation.expression;
+
+import org.jabc.musicnotation.tools.Fraction;
 
 /**
  * Created by Willi on 22.02.2017.

@@ -1,10 +1,10 @@
 package org.jabc.musicnotation.expression;
 
-import org.jabc.musicnotation.expression.MusicalExpression;
 import org.jabc.musicnotation.tools.Accidental;
-import org.jabc.musicnotation.tools.DurationExpression;
 import org.jabc.musicnotation.tools.Fraction;
-import org.jabc.musicnotation.tools.Interval;
+import org.jabc.musicnotation.tools.Pitch;
+
+import java.util.ArrayList;
 
 /**
  * Created by Willi on 30.10.2016.
@@ -17,11 +17,12 @@ public class Note implements MusicalExpression, DurationExpression
         return m_type;
     }
 
-    private Interval m_interval;
+    private Pitch m_pitch;
     private Accidental m_accidental;
     private int m_octave;
     private Fraction m_duration;
     private ExpressionType m_type;
+    private ArrayList<Decoration> m_decorations;
 
     public Note(String note, Fraction duration)
     {
@@ -37,13 +38,15 @@ public class Note implements MusicalExpression, DurationExpression
             m_octave = 5;
         }
 
-        m_interval= Interval.valueOf(note.toUpperCase());
+        m_pitch = Pitch.valueOf(note.toUpperCase());
         m_duration = duration;
+
+        m_decorations = null;
     }
 
-    public void setInterval(Interval interval)
+    public void setInterval(Pitch pitch)
     {
-        m_interval = interval;
+        m_pitch = pitch;
     }
     public void setOctave(int octave)
     {
@@ -56,7 +59,7 @@ public class Note implements MusicalExpression, DurationExpression
 
     public int getInterval()
     {
-        return (m_interval.getInterval() + m_accidental.getInterval());
+        return (m_pitch.getInterval() + m_accidental.getInterval());
     }
 
     @Override
@@ -67,7 +70,7 @@ public class Note implements MusicalExpression, DurationExpression
         {
             noteString += m_accidental.name();
         }
-        noteString += m_interval.name();
+        noteString += m_pitch.name();
         noteString += m_octave;
         return noteString;
     }
@@ -90,5 +93,14 @@ public class Note implements MusicalExpression, DurationExpression
     public void setAccidental(Accidental accidental)
     {
         this.m_accidental = accidental;
+    }
+
+    public void addDecoration(ArrayList<Decoration> decorations)
+    {
+        m_decorations = decorations;
+    }
+    public ArrayList<Decoration> getDecorations()
+    {
+        return m_decorations;
     }
 }

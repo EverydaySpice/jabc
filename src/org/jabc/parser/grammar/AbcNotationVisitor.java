@@ -3,7 +3,7 @@ package org.jabc.parser.grammar;
 import org.jabc.musicnotation.expression.*;
 import org.jabc.musicnotation.structure.*;
 import org.jabc.musicnotation.tools.Accidental;
-import org.jabc.musicnotation.tools.DurationExpression;
+import org.jabc.musicnotation.expression.DurationExpression;
 import org.jabc.musicnotation.tools.Fraction;
 
 import java.util.ArrayList;
@@ -127,7 +127,7 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     {
         String decorationString = (ctx.Decoration().getText());
 
-        Decoration decoration = new Decoration(decorationString.substring(1, decorationString.length()-1));
+        Decoration decoration = new Decoration(decorationString);
         ArrayList<MusicalExpression> musicalExpressions =  new ArrayList<>(1);
         musicalExpressions.add(decoration);
         return musicalExpressions;
@@ -183,24 +183,20 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
         // parse key
         header.setKey(visitKey(ctx.key()));
 
-        // parse compoesr
-        if (ctx.composer() != null)
+        // parse composer
+        if (!ctx.composer().isEmpty())
             header.setComposer(visitComposer(ctx.composer().get(0)));
 
         // parse length
-        if (ctx.length() != null)
-            header.setStandardNoteLength(visitLength(ctx.length().get(0)));
-
-        // parse length
-        if (ctx.length() != null)
+        if (!ctx.length().isEmpty())
             header.setStandardNoteLength(visitLength(ctx.length().get(0)));
 
         // parse meter
-        if (ctx.meter() != null)
+        if (!ctx.meter().isEmpty())
             header.setTimeSignature(visitMeter(ctx.meter().get(0)));
 
         // parse tempo
-        if (ctx.tempo() != null)
+        if (!ctx.tempo().isEmpty())
             header.setTempo(visitTempo(ctx.tempo().get(0)));
 
         return header;
@@ -334,7 +330,10 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     @Override
     public String visitComposer(AbcNotationParser.ComposerContext ctx)
     {
-        return visitString(ctx.string());
+        if (ctx != null)
+            return visitString(ctx.string());
+        else
+            return "";
     }
 
     @Override

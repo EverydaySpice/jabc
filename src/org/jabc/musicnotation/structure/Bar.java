@@ -1,6 +1,9 @@
 package org.jabc.musicnotation.structure;
 
+import org.jabc.musicnotation.tools.Fraction;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Willi on 30.10.2016.
@@ -8,6 +11,8 @@ import java.util.ArrayList;
 public class Bar
 {
     private ArrayList<Beat> m_beats;
+
+    private HashMap<Fraction, Beat> m_beatMap;
 
     public Bar()
     {
@@ -17,6 +22,11 @@ public class Bar
     public void addBeat(Beat beat)
     {
         m_beats.add(beat);
+    }
+
+    public void addBeat(Fraction position, Beat beat)
+    {
+        m_beatMap.put(position,beat);
     }
 
     public ArrayList<Beat> getBeats()

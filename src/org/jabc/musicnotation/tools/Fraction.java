@@ -1,8 +1,5 @@
 package org.jabc.musicnotation.tools;
 
-/**
- * Created by Willi on 30.10.2016.
- */
 public class Fraction
 {
     private int m_numerator;

@@ -25,9 +25,6 @@ import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Willi on 25.11.2016.
- */
 public class AbcNotationNoteValuesTest
 {
     private Tune tune;

@@ -23,13 +23,12 @@ public class Main
             InputStream is = new FileInputStream(inputFile);
             Reader r = new InputStreamReader(is, "utf-8");
 
-            //is = new FileInputStream(inputFile);
             ANTLRInputStream input = new ANTLRInputStream(r);
             AbcNotationLexer lexer = new AbcNotationLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             AbcNotationParser parser = new AbcNotationParser(tokens);
 
-            ParseTree tree = parser.tune(); // parse; start at prog <label id="code.tour.main.6"/>
+            ParseTree tree = parser.tune();
             AbcNotationVisitor abcParser = new AbcNotationVisitor();
             abcParser.visit(tree);
             Tune tune = abcParser.getTune();

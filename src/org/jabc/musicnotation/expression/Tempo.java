@@ -5,9 +5,6 @@ import org.jabc.musicnotation.tools.Fraction;
 
 import java.util.ArrayList;
 
-/**
- * Created by Willi on 30.11.2016.
- */
 public class Tempo implements MusicalExpression
 {
     private ArrayList<Fraction> beat;

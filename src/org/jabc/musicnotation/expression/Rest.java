@@ -2,9 +2,6 @@ package org.jabc.musicnotation.expression;
 
 import org.jabc.musicnotation.tools.Fraction;
 
-/**
- * Created by Willi on 29.11.2016.
- */
 public class Rest implements MusicalExpression, DurationExpression
 {
     private Fraction duration;

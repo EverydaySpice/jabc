@@ -5,9 +5,7 @@ import org.jabc.musicnotation.tools.Fraction;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Willi on 30.10.2016.
- */
+
 public class Bar
 {
     private ArrayList<Beat> m_beats;

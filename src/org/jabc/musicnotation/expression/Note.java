@@ -6,9 +6,6 @@ import org.jabc.musicnotation.tools.Pitch;
 
 import java.util.ArrayList;
 
-/**
- * Created by Willi on 30.10.2016.
- */
 public class Note implements MusicalExpression, DurationExpression
 {
     @Override

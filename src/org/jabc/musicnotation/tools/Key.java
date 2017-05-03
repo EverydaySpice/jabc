@@ -1,8 +1,5 @@
 package org.jabc.musicnotation.tools;
 
-/**
- * Created by Willi on 29.11.2016.
- */
 public enum Key
 {
     C_Sharp("C#",   1 , 1 , 1 , 1 , 1 , 1 , 1),

@@ -432,13 +432,14 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     @Override
     public Fraction visitNoteLength(AbcNotationParser.NoteLengthContext ctx)
     {
-        Fraction f = (Fraction) visitChildren(ctx);
-        if (f == null)
+
+        if (ctx == null)
         {
             return m_standardNoteLength;
         }
         else
         {
+            Fraction f = (Fraction) visitChildren(ctx);
             return f.multiply(m_standardNoteLength);
         }
     }
@@ -447,16 +448,17 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     public Integer visitNoteOctave(AbcNotationParser.NoteOctaveContext ctx)
     {
         int octaveChange = 0;
-
-        for(AbcNotationParser.OctaveDownContext c : ctx.octaveDown())
+        if (ctx != null)
         {
-            octaveChange--;
+            for(AbcNotationParser.OctaveDownContext c : ctx.octaveDown())
+            {
+                octaveChange--;
+            }
+            for(AbcNotationParser.OctaveUpContext c : ctx.octaveUp())
+            {
+                octaveChange++;
+            }
         }
-        for(AbcNotationParser.OctaveUpContext c : ctx.octaveUp())
-        {
-            octaveChange++;
-        }
-
         return octaveChange;
     }
 

@@ -29,11 +29,11 @@ public interface AbcNotationParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEndOfLine(AbcNotationParser.EndOfLineContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#voiceInfo}.
+	 * Visit a parse tree produced by {@link AbcNotationParser#tune}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVoiceInfo(AbcNotationParser.VoiceInfoContext ctx);
+	T visitTune(AbcNotationParser.TuneContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AbcNotationParser#voice}.
 	 * @param ctx the parse tree
@@ -41,83 +41,17 @@ public interface AbcNotationParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVoice(AbcNotationParser.VoiceContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#tune}.
+	 * Visit a parse tree produced by {@link AbcNotationParser#voiceInfo}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTune(AbcNotationParser.TuneContext ctx);
+	T visitVoiceInfo(AbcNotationParser.VoiceInfoContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AbcNotationParser#score}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitScore(AbcNotationParser.ScoreContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#bar}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBar(AbcNotationParser.BarContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#endOfBar}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEndOfBar(AbcNotationParser.EndOfBarContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#barline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBarline(AbcNotationParser.BarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#simpleBarline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSimpleBarline(AbcNotationParser.SimpleBarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#thinThinBarline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitThinThinBarline(AbcNotationParser.ThinThinBarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#thikThinBarline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitThikThinBarline(AbcNotationParser.ThikThinBarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#thinThikBarline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitThinThikBarline(AbcNotationParser.ThinThikBarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#startOfRepeatedBarline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStartOfRepeatedBarline(AbcNotationParser.StartOfRepeatedBarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#endOfRepeatedBarline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEndOfRepeatedBarline(AbcNotationParser.EndOfRepeatedBarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#startAndEndOfRepeatedBarline}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStartAndEndOfRepeatedBarline(AbcNotationParser.StartAndEndOfRepeatedBarlineContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#suppresScoreLinebreak}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSuppresScoreLinebreak(AbcNotationParser.SuppresScoreLinebreakContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AbcNotationParser#header}.
 	 * @param ctx the parse tree
@@ -196,6 +130,72 @@ public interface AbcNotationParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIntegerTempo(AbcNotationParser.IntegerTempoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#bar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBar(AbcNotationParser.BarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#endOfBar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEndOfBar(AbcNotationParser.EndOfBarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#barline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBarline(AbcNotationParser.BarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#simpleBarline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimpleBarline(AbcNotationParser.SimpleBarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#thinThinBarline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThinThinBarline(AbcNotationParser.ThinThinBarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#thikThinBarline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThikThinBarline(AbcNotationParser.ThikThinBarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#thinThikBarline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThinThikBarline(AbcNotationParser.ThinThikBarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#startOfRepeatedBarline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStartOfRepeatedBarline(AbcNotationParser.StartOfRepeatedBarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#endOfRepeatedBarline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEndOfRepeatedBarline(AbcNotationParser.EndOfRepeatedBarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#startAndEndOfRepeatedBarline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStartAndEndOfRepeatedBarline(AbcNotationParser.StartAndEndOfRepeatedBarlineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AbcNotationParser#suppresScoreLinebreak}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuppresScoreLinebreak(AbcNotationParser.SuppresScoreLinebreakContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AbcNotationParser#musicalExpression}.
 	 * @param ctx the parse tree
@@ -335,11 +335,11 @@ public interface AbcNotationParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTiedNote(AbcNotationParser.TiedNoteContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#delimeter}.
+	 * Visit a parse tree produced by {@link AbcNotationParser#delimiter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDelimeter(AbcNotationParser.DelimeterContext ctx);
+	T visitDelimiter(AbcNotationParser.DelimiterContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AbcNotationParser#multiplier}.
 	 * @param ctx the parse tree

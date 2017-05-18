@@ -51,9 +51,6 @@ Decoration:             ('!' [a-zA-Z0-9().+<>]* '!') |
                         'v'  ;
 
 mode STRING_MODE;
-//QuotationEnd: '"'->mode(DEFAULT_MODE);
-//STRING_MODE_COMMENT: COMMENT ->mode(DEFAULT_MODE);
-//EXIT_NEWLINE: NEWLINE ->mode(DEFAULT_MODE);
 STRING_MODE_EXIT: (NEWLINE | '"' | ']' ) ->mode(DEFAULT_MODE);
 STRING_MODE_COMMENT: '%' ~[\r\n]* {System.out.println("lc > " + getText());}->skip;
 STRING: (ID | INT | WS | [-_;,/.$§!?=&()] | '|' )+;

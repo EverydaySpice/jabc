@@ -6,33 +6,14 @@ options { tokenVocab=AbcNotationLexer; }
 fraction: numerator=INT Slash denominator=INT;
 string: text=STRING STRING_MODE_EXIT;
 endOfLine: NEWLINE | COMMENT;
+
 // --->TUNE:
+tune: header (voice)+ ;
+// voiceInfo example: V: left hand
+voice: (voiceInfo? score+);
 voiceInfo: VoiceSymbol text=STRING STRING_MODE_EXIT;
-voice: (voiceInfo? score);
-tune: header (voice)+ NEWLINE? EOF;
-score:(bar NEWLINE? suppresScoreLinebreak?)+ ;
-bar: WS* (musicalExpression)+ endOfBar;
+score:(bar suppresScoreLinebreak?)+ (NEWLINE | EOF);
 // >---END OF TUNE
-
-// --->BAR:
-endOfBar: WS* barline;
-barline: simpleBarline
-       | thinThikBarline
-       | thikThinBarline
-       | thinThinBarline
-       | startOfRepeatedBarline
-       | endOfRepeatedBarline
-       | startAndEndOfRepeatedBarline;
-
-simpleBarline: VerticalBar;
-thinThinBarline: VerticalBar VerticalBar;
-thikThinBarline: SquareBracketOpen VerticalBar;
-thinThikBarline: VerticalBar SquareBracketClosed;
-startOfRepeatedBarline: VerticalBar Colon;
-endOfRepeatedBarline: Colon VerticalBar;
-startAndEndOfRepeatedBarline: Colon Colon;
-suppresScoreLinebreak: Backslash NEWLINE;
-// >---BAR
 
 // --->HEADER:
 header: identifier title+ (meter| length| notes| tempo | composer )* key;
@@ -59,9 +40,32 @@ integerTempo:    stringQuotation? speed=INT stringQuotation?;
 
 // >---END OF HEADER
 
+
+// --->BAR:
+bar: WS* (musicalExpression)+ endOfBar;
+endOfBar: WS* barline;
+barline: simpleBarline
+       | thinThikBarline
+       | thikThinBarline
+       | thinThinBarline
+       | startOfRepeatedBarline
+       | endOfRepeatedBarline
+       | startAndEndOfRepeatedBarline;
+
+simpleBarline: VerticalBar;
+thinThinBarline: VerticalBar VerticalBar;
+thikThinBarline: SquareBracketOpen VerticalBar;
+thinThikBarline: VerticalBar SquareBracketClosed;
+startOfRepeatedBarline: VerticalBar Colon;
+endOfRepeatedBarline: Colon VerticalBar;
+startAndEndOfRepeatedBarline: Colon Colon;
+suppresScoreLinebreak: Backslash NEWLINE;
+// >---BAR
+
+
 // --->NOTES and muscial Expressions:
 
-musicalExpression: (inlineField | slurStart | slurEnd | multipleNotes | note | rest );
+musicalExpression: WS? (inlineField | slurStart | slurEnd | multipleNotes | note | rest );
 note: decoration? accidental? noteExpression noteOctave noteLength tiedNote?;
 multipleNotes: decorationExpression? WS* SquareBracketOpen (note)+ SquareBracketClosed tiedNote?;
 rest: WS? (Rest | InvisibleRest) noteLength WS?;
@@ -70,7 +74,7 @@ beamNote: noteString=NOTE;
 noBeamNote: WS+ noteString=NOTE;
 decoration: decorationName=Decoration;
 decorationExpression: decorationName=Decoration;
-noteLength: (delimeter
+noteLength: (delimiter
             | multiplier)?;
 
 noteOctave: (octaveUp
@@ -94,7 +98,7 @@ sharp: Sharp;
 natural: Equals;
 tiedNote: Minus;
 
-delimeter: Slash denominator=INT?;
+delimiter: Slash denominator=INT?;
 multiplier: (numerator=INT |  numerator=INT Slash+ denominator=INT?);
 octaveUp: OCTAVE_UP;
 octaveDown: OCTAVE_DOWN;

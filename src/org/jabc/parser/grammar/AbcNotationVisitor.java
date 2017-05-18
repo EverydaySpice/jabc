@@ -67,7 +67,13 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
             voiceName = visitVoiceInfo(ctx.voiceInfo());
         }
 
-        ArrayList<Bar> bars = visitScore(ctx.score());
+
+        ArrayList<Bar> bars = new ArrayList<Bar>();
+        for (AbcNotationParser.ScoreContext scoreContext : ctx.score())
+        {
+            bars.addAll(visitScore(scoreContext));
+        }
+        //visitScore(ctx.score());
 
         Voice voice = new Voice(voiceName, bars);
 
@@ -420,7 +426,7 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     }
 
     @Override
-    public Fraction visitDelimeter(AbcNotationParser.DelimeterContext ctx)
+    public Fraction visitDelimiter(AbcNotationParser.DelimiterContext ctx)
     {
         if (ctx.denominator != null)
         {

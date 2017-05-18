@@ -65,13 +65,11 @@ suppresScoreLinebreak: Backslash NEWLINE;
 
 // --->NOTES and muscial Expressions:
 
-musicalExpression: WS? (inlineField | slurStart | slurEnd | multipleNotes | note | rest );
-note: decoration? accidental? noteExpression noteOctave noteLength tiedNote?;
+musicalExpression: (inlineField | slurStart | slurEnd | multipleNotes | note | rest );
+note: WS? decoration? accidental? noteExpression noteOctave noteLength tiedNote?;
 multipleNotes: decorationExpression? WS* SquareBracketOpen (note)+ SquareBracketClosed tiedNote?;
 rest: WS? (Rest | InvisibleRest) noteLength WS?;
-noteExpression: noBeamNote | beamNote;
-beamNote: noteString=NOTE;
-noBeamNote: WS+ noteString=NOTE;
+noteExpression: noteString=NOTE;
 decoration: decorationName=Decoration;
 decorationExpression: decorationName=Decoration;
 noteLength: (delimiter

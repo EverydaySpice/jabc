@@ -227,18 +227,6 @@ public interface AbcNotationParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNoteExpression(AbcNotationParser.NoteExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#beamNote}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBeamNote(AbcNotationParser.BeamNoteContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link AbcNotationParser#noBeamNote}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNoBeamNote(AbcNotationParser.NoBeamNoteContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link AbcNotationParser#decoration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

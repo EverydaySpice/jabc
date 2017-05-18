@@ -27,18 +27,18 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     {
         return m_tune;
     }
-
-    @Override
-    public String visitBeamNote(AbcNotationParser.BeamNoteContext ctx)
-    {
-        return ctx.noteString.getText();
-    }
-
-    @Override
-    public String visitNoBeamNote(AbcNotationParser.NoBeamNoteContext ctx)
-    {
-        return ctx.noteString.getText();
-    }
+//
+//    @Override
+//    public String visitBeamNote(AbcNotationParser.BeamNoteContext ctx)
+//    {
+//        return ctx.noteString.getText();
+//    }
+//
+//    @Override
+//    public String visitNoBeamNote(AbcNotationParser.NoBeamNoteContext ctx)
+//    {
+//        return ctx.noteString.getText();
+//    }
 
     @Override
     public Tune visitTune(AbcNotationParser.TuneContext ctx)
@@ -415,7 +415,8 @@ public class AbcNotationVisitor extends AbcNotationParserBaseVisitor
     @Override
     public String visitNoteExpression(AbcNotationParser.NoteExpressionContext ctx)
     {
-        return (String) visitChildren(ctx);
+        return ctx.noteString.getText();
+        //return (String) visitChildren(ctx);
     }
 
     @Override

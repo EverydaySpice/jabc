@@ -4,14 +4,14 @@ public enum Pitch
 {
     C(1), D(3), E(5), F(6), G(8), A(10), B(12);
 
-    private int interval;
+    private final int PITCH;
 
-    Pitch(int interval)
+    Pitch(int pitch)
     {
-        this.interval = interval;
+        this.PITCH = pitch;
     }
-    public int getInterval()
+    public int getPitch()
     {
-        return interval;
+        return PITCH;
     }
 }

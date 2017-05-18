@@ -18,8 +18,8 @@ public enum Key
     G_Flat("Gb",   -1, -1 ,-1 , 0 ,-1 ,-1 ,-1),
     C_Flat("Cb",   -1 ,-1 ,-1 ,-1 ,-1 ,-1 ,-1);
 
-    private String name;
-    private int[] intervalList;
+    private final String NAME;
+    private final int[] INTERVAL_LIST;
 
     public static Key getKey(String s)
     {
@@ -35,17 +35,17 @@ public enum Key
 
     public String getName()
     {
-        return name;
+        return NAME;
     }
 
     Key(String name, int C, int D, int E, int F, int G, int A, int B)
     {
-        this.name = name;
-        intervalList = new int[]{C, D, E, F, G, A, B};
+        this.NAME = name;
+        INTERVAL_LIST = new int[]{C, D, E, F, G, A, B};
     }
-    public int getIntervalFor(int noteInterval)
+    public int getIntervalFor(int pitch)
     {
-        return intervalList[noteInterval];
+        return INTERVAL_LIST[pitch];
     }
 
 }

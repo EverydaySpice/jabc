@@ -56,7 +56,7 @@ public class Note implements MusicalExpression, DurationExpression
 
     public int getInterval()
     {
-        return (m_pitch.getInterval() + m_accidental.getInterval());
+        return (m_pitch.getPitch() + m_accidental.getInterval());
     }
 
     @Override

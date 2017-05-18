@@ -61,7 +61,7 @@ public class AbcNotationNoteValuesTest
         Pitch a = Pitch.A;
         Accidental sharp = Accidental.SHARP;
         Key key = Key.D;
-        int interval = a.getInterval() + key.getIntervalFor(a.ordinal()) + sharp.getInterval();
+        int interval = a.getPitch() + key.getIntervalFor(a.ordinal()) + sharp.getInterval();
         System.out.println(interval);
     }
 
@@ -76,7 +76,7 @@ public class AbcNotationNoteValuesTest
 
         assertEquals(ratio, 1.0f, 0.0f);
 
-        assertEquals(note1.getInterval(), Pitch.C.getInterval());
+        assertEquals(note1.getInterval(), Pitch.C.getPitch());
         assertEquals(note1.getOctave(), 4);
     }
 
@@ -116,22 +116,22 @@ public class AbcNotationNoteValuesTest
         // Check pitch
         assertEquals(rest.getType(), MusicalExpression.ExpressionType.REST);
 
-        assertEquals(note1.getInterval(), Pitch.E.getInterval());
+        assertEquals(note1.getInterval(), Pitch.E.getPitch());
         assertEquals(note1.getOctave(), 4);
 
-        assertEquals(note2.getInterval(), Pitch.F.getInterval());
+        assertEquals(note2.getInterval(), Pitch.F.getPitch());
         assertEquals(note2.getOctave(), 4);
 
-        assertEquals(note3.getInterval(), Pitch.G.getInterval());
+        assertEquals(note3.getInterval(), Pitch.G.getPitch());
         assertEquals(note3.getOctave(), 4);
 
-        assertEquals(note4.getInterval(), Pitch.G.getInterval());
+        assertEquals(note4.getInterval(), Pitch.G.getPitch());
         assertEquals(note4.getOctave(), 4);
 
-        assertEquals(note5.getInterval(), Pitch.E.getInterval());
+        assertEquals(note5.getInterval(), Pitch.E.getPitch());
         assertEquals(note5.getOctave(), 4);
 
-        assertEquals(note6.getInterval(), Pitch.C.getInterval());
+        assertEquals(note6.getInterval(), Pitch.C.getPitch());
         assertEquals(note6.getOctave(), 4);
 
     }
@@ -158,22 +158,22 @@ public class AbcNotationNoteValuesTest
         assertEquals(note32.getDuration().getRational(),  4.f / 8.f, 0.0f);
 
         // Check pitch
-        assertEquals(note1.getInterval(), Pitch.C.getInterval());
+        assertEquals(note1.getInterval(), Pitch.C.getPitch());
         assertEquals(note1.getOctave(), 3);
 
-        assertEquals(note12.getInterval(), Pitch.G.getInterval());
+        assertEquals(note12.getInterval(), Pitch.G.getPitch());
         assertEquals(note12.getOctave(), 3);
 
-        assertEquals(note2.getInterval(), Pitch.C.getInterval()+1);
+        assertEquals(note2.getInterval(), Pitch.C.getPitch()+1);
         assertEquals(note2.getOctave(), 3);
 
-        assertEquals(note22.getInterval(), Pitch.G.getInterval()-1);
+        assertEquals(note22.getInterval(), Pitch.G.getPitch()-1);
         assertEquals(note22.getOctave(), 3);
 
-        assertEquals(note3.getInterval(), Pitch.C.getInterval());
+        assertEquals(note3.getInterval(), Pitch.C.getPitch());
         assertEquals(note3.getOctave(), 3);
 
-        assertEquals(note32.getInterval(), Pitch.G.getInterval());
+        assertEquals(note32.getInterval(), Pitch.G.getPitch());
         assertEquals(note32.getOctave(), 3);
     }
 

@@ -8,14 +8,14 @@ public enum Accidental
     SHARP(1),
     DOUBLE_SHARP(2);
 
-    private int interval;
+    private final int INTERVAL;
 
     Accidental(int interval)
     {
-        this.interval = interval;
+        this.INTERVAL = interval;
     }
     public int getInterval()
     {
-        return interval;
+        return INTERVAL;
     }
 }

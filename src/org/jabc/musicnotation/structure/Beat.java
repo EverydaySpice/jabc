@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Beat
 {
-    private ArrayList<MusicalExpression> m_expressions;
+    private final ArrayList<MusicalExpression> m_expressions;
     private Fraction m_duration;
 
     public Beat(Fraction duration)

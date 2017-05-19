@@ -37,7 +37,6 @@ fractionTempo:  stringQuotation? (WS? fraction)+ WS? Equals WS? speed=INT WS? st
 stringTempo:    stringQuotation;
 stringQuotation: Quotationmark string;
 integerTempo:    stringQuotation? speed=INT stringQuotation?;
-
 // >---END OF HEADER
 
 
@@ -63,12 +62,17 @@ suppresScoreLinebreak: Backslash NEWLINE;
 // >---BAR
 
 
-// --->NOTES and muscial Expressions:
-
+// --->NOTES and other muscial Expressions:
 musicalExpression: (inlineField | slurStart | slurEnd | multipleNotes | note | rest );
+
+// if there is whitespace (WS) before the note it is assumed that its beam should be
+// displayed broken. This has to be checked in the visitor when visiting a note node.
 note: WS? decoration? accidental? noteExpression noteOctave? noteLength? tiedNote?;
+
 multipleNotes: decorationExpression? WS* SquareBracketOpen (note)+ SquareBracketClosed tiedNote?;
+
 rest: WS? (Rest | InvisibleRest) noteLength WS?;
+
 noteExpression: noteString=NOTE;
 decoration: decorationName=Decoration;
 decorationExpression: decorationName=Decoration;

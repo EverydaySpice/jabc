@@ -1,5 +1,9 @@
 package org.jabc.musicnotation.tools;
 
+/**
+ * Represents a musical key. An array for the seven tones shows which on of
+ * them is raised (1) or lowered (-1) or not effected (0) .
+ */
 public enum Key
 {
     C_Sharp("C#",   1 , 1 , 1 , 1 , 1 , 1 , 1),

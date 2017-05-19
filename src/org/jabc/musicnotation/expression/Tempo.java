@@ -4,7 +4,13 @@ import org.jabc.musicnotation.expression.MusicalExpression;
 import org.jabc.musicnotation.tools.Fraction;
 
 import java.util.ArrayList;
-
+/**
+ * Represents a tempo instruction. Can be in various styles like:
+ * 1/4 = 100 "moderate"  or:
+ * "fast" 1/8 = 65 or:
+ * 2/8 3/8 3/8 = 100 or just:
+ * 100
+ */
 public class Tempo implements MusicalExpression
 {
     private ArrayList<Fraction> beat;

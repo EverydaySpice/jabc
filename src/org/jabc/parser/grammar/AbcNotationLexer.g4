@@ -1,11 +1,15 @@
 lexer grammar AbcNotationLexer;
 
+// standard data types:
 INT: [0-9]+;
 NEWLINE: '\r' ? '\n';
 WS: ('\t' | ' ')+;
+// skip all tokens that are not \r or \n (New lines)
 COMMENT: '%' ~[\r\n]* {System.out.println("lc > " + getText());} NEWLINE->skip;
 
-Slash: '/';
+// data storage symbols in the header.
+// if the is a string following the data field,
+// the lexer must change to the STRING_MODE sublexer.
 IdentifierSymbol:   'X:';
 TitleSymbol:        'T:' ->mode(STRING_MODE);
 MeterSymbol:        'M:';
@@ -15,14 +19,20 @@ NotesSymbol:        'N:'  ->mode(STRING_MODE);
 VoiceSymbol:        'V:'  ->mode(STRING_MODE);
 ComposerSymbol:     'C:'  ->mode(STRING_MODE);
 TempoSymbol:        'Q:';
+// skip all not supported symbols.
+// TODO: support more symbols.
 NotSupportedSymbol: [ABDFGHImOPRrSsUWwZ] ':' .*? NEWLINE ->skip;
-MULTIPLIER: INT;
+
+
+// notes and other musical expressions:
+NOTE: [a-gA-G];
+MULTIPLIER:     INT;
 OCTAVE_UP:      '\'';
 OCTAVE_DOWN:    ',';
 Flat:           '_';
 Sharp:          '^';
+Slash:          '/';
 
-NOTE: [a-gA-G];
 Rest:                   'z';
 InvisibleRest:          'x';
 BarRest:                'Z';
@@ -35,6 +45,8 @@ Colon:                  ':';
 Equals:                 '=';
 Minus:                  '-';
 Backslash:              '\\';
+
+// if there is a quotation mark, a string is following:
 Quotationmark:          '"' ->mode(STRING_MODE);
 
 Decoration:             ('!' [a-zA-Z0-9().+<>]* '!') |
@@ -50,6 +62,8 @@ Decoration:             ('!' [a-zA-Z0-9().+<>]* '!') |
                         'u'  |
                         'v'  ;
 
+// Sublexer for parsing strings. Needed because there are conflicts
+// when lexing Notes like "G2G2", which looks also like a string.
 mode STRING_MODE;
 STRING_MODE_EXIT: (NEWLINE | '"' | ']' ) ->mode(DEFAULT_MODE);
 STRING_MODE_COMMENT: '%' ~[\r\n]* {System.out.println("lc > " + getText());}->skip;

@@ -14,7 +14,7 @@ public class TuneHeader
     private String m_key;
     private Meter m_timeSignature;
     private Fraction m_standardNoteLength;
-    private Tempo m_Tempo;
+    private Tempo m_tempo;
 
     public TuneHeader()
     {
@@ -88,11 +88,11 @@ public class TuneHeader
 
     public Tempo getTempo()
     {
-        return m_Tempo;
+        return m_tempo;
     }
 
     public void setTempo(Tempo tempo)
     {
-        this.m_Tempo = tempo;
+        this.m_tempo = tempo;
     }
 }

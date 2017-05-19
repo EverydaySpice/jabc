@@ -1,7 +1,9 @@
 package org.jabc.musicnotation.expression;
 
 import org.jabc.musicnotation.tools.Fraction;
-
+/**
+ * Represents a rest. Just like a note, a rest can have a duration.
+ */
 public class Rest implements MusicalExpression, DurationExpression
 {
     private Fraction duration;

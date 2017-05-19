@@ -34,7 +34,6 @@ public class AbcNotationHeaderTest
         {
             e.printStackTrace();
         }
-        //is = new FileInputStream(inputFile);
         ANTLRInputStream input = null;
         try
         {

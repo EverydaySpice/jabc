@@ -6,6 +6,10 @@ import org.jabc.musicnotation.tools.Pitch;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a single Note. A Note has a pitch, accidental, duration and octave.
+ * It can have optional decorations.
+ */
 public class Note implements MusicalExpression, DurationExpression
 {
     @Override
@@ -18,9 +22,17 @@ public class Note implements MusicalExpression, DurationExpression
     private Accidental m_accidental;
     private int m_octave;
     private Fraction m_duration;
-    private ExpressionType m_type;
+    private final ExpressionType m_type;
     private ArrayList<Decoration> m_decorations;
 
+    /**
+     * Create a Note from String [a-gA-G] and beat-length
+     *
+     * @param note  valid values are [a-gA-G]. Upper-case letters mean that the
+     *              note is one octave lower.
+     * @param duration the duration (beat-length) of the note. Can be changed
+     *                 after initialization.
+     */
     public Note(String note, Fraction duration)
     {
         m_accidental = Accidental.NATURAL;
@@ -41,7 +53,7 @@ public class Note implements MusicalExpression, DurationExpression
         m_decorations = null;
     }
 
-    public void setInterval(Pitch pitch)
+    public void setPitch(Pitch pitch)
     {
         m_pitch = pitch;
     }

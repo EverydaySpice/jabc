@@ -8,9 +8,7 @@ import java.util.HashMap;
 
 public class Bar
 {
-    private ArrayList<Beat> m_beats;
-
-    private HashMap<Fraction, Beat> m_beatMap;
+    private final ArrayList<Beat> m_beats;
 
     public Bar()
     {
@@ -20,11 +18,6 @@ public class Bar
     public void addBeat(Beat beat)
     {
         m_beats.add(beat);
-    }
-
-    public void addBeat(Fraction position, Beat beat)
-    {
-        m_beatMap.put(position,beat);
     }
 
     public ArrayList<Beat> getBeats()

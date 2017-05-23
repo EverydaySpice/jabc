@@ -14,6 +14,8 @@ public enum Pitch
     {
         this.PITCH = pitch;
     }
+    
+    /**Returns the number of half tone steps. Whereby the prime-interval (C) is 1 . */
     public int getPitch()
     {
         return PITCH;

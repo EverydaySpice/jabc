@@ -35,6 +35,9 @@ public class Tempo implements MusicalExpression
         this.annotation = annotation;
     }
 
+    /**
+     * @return tempo Tempo in beats per minute (BPM)
+     */
     public int getTempo()
     {
         return tempo;

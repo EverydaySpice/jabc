@@ -112,4 +112,18 @@ public class Note implements MusicalExpression, DurationExpression
     {
         return m_decorations;
     }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (other instanceof Note)
+        {
+            Note otherNote = (Note) other;
+            if (this.toString().equals(otherNote.toString()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

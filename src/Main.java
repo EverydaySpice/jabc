@@ -4,7 +4,9 @@ import org.antlr.v4.gui.TestRig;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.jabc.musicnotation.expression.Note;
 import org.jabc.musicnotation.structure.Tune;
+import org.jabc.musicnotation.tools.Fraction;
 import org.jabc.parser.grammar.AbcNotationLexer;
 import org.jabc.parser.grammar.AbcNotationParser;
 import org.jabc.parser.grammar.AbcNotationVisitor;
@@ -44,6 +46,18 @@ public class Main
             // start the ANTLR TestRig to draw the parser-tree of the input-file
             TestRig.main(new String[]{"org.jabc.parser.grammar.AbcNotation", "tune", "-gui"
                     , inputFile});
+
+
+            Note note1 = new Note("A", new Fraction(1,4));
+            Note note2 = new Note("D", new Fraction(1,4));
+            Note note3 = new Note("G", new Fraction(1,4));
+            Note note4 = new Note("A", new Fraction(1,4));
+            boolean equals = note1.equals(note2);
+            boolean equals2 = note1.equals(note3);
+            boolean equals3 = note1.equals(note4);
+            System.out.println(equals);
+            System.out.println(equals2);
+            System.out.println(equals3);
 
         }
         catch (Exception e)

@@ -17,10 +17,10 @@ public class AbcNotationParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		INT=1, NEWLINE=2, WS=3, COMMENT=4, Slash=5, IdentifierSymbol=6, TitleSymbol=7, 
-		MeterSymbol=8, LengthSymbol=9, KeySymbol=10, NotesSymbol=11, VoiceSymbol=12, 
-		ComposerSymbol=13, TempoSymbol=14, NotSupportedSymbol=15, MULTIPLIER=16, 
-		OCTAVE_UP=17, OCTAVE_DOWN=18, Flat=19, Sharp=20, NOTE=21, Rest=22, InvisibleRest=23, 
+		INT=1, NEWLINE=2, WS=3, COMMENT=4, IdentifierSymbol=5, TitleSymbol=6, 
+		MeterSymbol=7, LengthSymbol=8, KeySymbol=9, NotesSymbol=10, VoiceSymbol=11, 
+		ComposerSymbol=12, TempoSymbol=13, NotSupportedSymbol=14, NOTE=15, MULTIPLIER=16, 
+		OCTAVE_UP=17, OCTAVE_DOWN=18, Flat=19, Sharp=20, Slash=21, Rest=22, InvisibleRest=23, 
 		BarRest=24, BracketOpen=25, BracketClosed=26, SquareBracketOpen=27, SquareBracketClosed=28, 
 		VerticalBar=29, Colon=30, Equals=31, Minus=32, Backslash=33, Quotationmark=34, 
 		Decoration=35, STRING_MODE_EXIT=36, STRING_MODE_COMMENT=37, STRING=38, 
@@ -55,20 +55,19 @@ public class AbcNotationParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, null, null, null, null, "'/'", "'X:'", "'T:'", "'M:'", "'L:'", "'K:'", 
-		"'N:'", "'V:'", "'C:'", "'Q:'", null, null, "'''", "','", "'_'", "'^'", 
-		null, "'z'", "'x'", "'Z'", "'('", "')'", "'['", "']'", "'|'", "':'", "'='", 
-		"'-'", "'\\'", "'\"'"
+		null, null, null, null, null, "'X:'", "'T:'", "'M:'", "'L:'", "'K:'", 
+		"'N:'", "'V:'", "'C:'", "'Q:'", null, null, null, "'''", "','", "'_'", 
+		"'^'", "'/'", "'z'", "'x'", "'Z'", "'('", "')'", "'['", "']'", "'|'", 
+		"':'", "'='", "'-'", "'\\'", "'\"'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "INT", "NEWLINE", "WS", "COMMENT", "Slash", "IdentifierSymbol", 
-		"TitleSymbol", "MeterSymbol", "LengthSymbol", "KeySymbol", "NotesSymbol", 
-		"VoiceSymbol", "ComposerSymbol", "TempoSymbol", "NotSupportedSymbol", 
-		"MULTIPLIER", "OCTAVE_UP", "OCTAVE_DOWN", "Flat", "Sharp", "NOTE", "Rest", 
-		"InvisibleRest", "BarRest", "BracketOpen", "BracketClosed", "SquareBracketOpen", 
-		"SquareBracketClosed", "VerticalBar", "Colon", "Equals", "Minus", "Backslash", 
-		"Quotationmark", "Decoration", "STRING_MODE_EXIT", "STRING_MODE_COMMENT", 
-		"STRING", "ID"
+		null, "INT", "NEWLINE", "WS", "COMMENT", "IdentifierSymbol", "TitleSymbol", 
+		"MeterSymbol", "LengthSymbol", "KeySymbol", "NotesSymbol", "VoiceSymbol", 
+		"ComposerSymbol", "TempoSymbol", "NotSupportedSymbol", "NOTE", "MULTIPLIER", 
+		"OCTAVE_UP", "OCTAVE_DOWN", "Flat", "Sharp", "Slash", "Rest", "InvisibleRest", 
+		"BarRest", "BracketOpen", "BracketClosed", "SquareBracketOpen", "SquareBracketClosed", 
+		"VerticalBar", "Colon", "Equals", "Minus", "Backslash", "Quotationmark", 
+		"Decoration", "STRING_MODE_EXIT", "STRING_MODE_COMMENT", "STRING", "ID"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -285,7 +284,7 @@ public class AbcNotationParser extends Parser {
 				setState(125); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WS) | (1L << VoiceSymbol) | (1L << Flat) | (1L << Sharp) | (1L << NOTE) | (1L << Rest) | (1L << InvisibleRest) | (1L << BracketOpen) | (1L << BracketClosed) | (1L << SquareBracketOpen) | (1L << Equals) | (1L << Decoration))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WS) | (1L << VoiceSymbol) | (1L << NOTE) | (1L << Flat) | (1L << Sharp) | (1L << Rest) | (1L << InvisibleRest) | (1L << BracketOpen) | (1L << BracketClosed) | (1L << SquareBracketOpen) | (1L << Equals) | (1L << Decoration))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -468,7 +467,7 @@ public class AbcNotationParser extends Parser {
 				setState(145); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WS) | (1L << Flat) | (1L << Sharp) | (1L << NOTE) | (1L << Rest) | (1L << InvisibleRest) | (1L << BracketOpen) | (1L << BracketClosed) | (1L << SquareBracketOpen) | (1L << Equals) | (1L << Decoration))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WS) | (1L << NOTE) | (1L << Flat) | (1L << Sharp) | (1L << Rest) | (1L << InvisibleRest) | (1L << BracketOpen) | (1L << BracketClosed) | (1L << SquareBracketOpen) | (1L << Equals) | (1L << Decoration))) != 0) );
 			setState(147);
 			_la = _input.LA(1);
 			if ( !(_la==EOF || _la==NEWLINE) ) {
@@ -2133,7 +2132,7 @@ public class AbcNotationParser extends Parser {
 				setState(348); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WS) | (1L << Flat) | (1L << Sharp) | (1L << NOTE) | (1L << Equals) | (1L << Decoration))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WS) | (1L << NOTE) | (1L << Flat) | (1L << Sharp) | (1L << Equals) | (1L << Decoration))) != 0) );
 			setState(350);
 			match(SquareBracketClosed);
 			setState(352);
@@ -3256,13 +3255,13 @@ public class AbcNotationParser extends Parser {
 		"\2\2P\u0178\3\2\2\2R\u017f\3\2\2\2T\u0184\3\2\2\2V\u0189\3\2\2\2X\u0191"+
 		"\3\2\2\2Z\u0193\3\2\2\2\\\u0197\3\2\2\2^\u019b\3\2\2\2`\u01a0\3\2\2\2"+
 		"b\u01a4\3\2\2\2d\u01a6\3\2\2\2f\u01a8\3\2\2\2h\u01aa\3\2\2\2j\u01ac\3"+
-		"\2\2\2l\u01ba\3\2\2\2n\u01bc\3\2\2\2p\u01be\3\2\2\2rs\7\3\2\2st\7\7\2"+
+		"\2\2\2l\u01ba\3\2\2\2n\u01bc\3\2\2\2p\u01be\3\2\2\2rs\7\3\2\2st\7\27\2"+
 		"\2tu\7\3\2\2u\3\3\2\2\2vw\7(\2\2wx\7&\2\2x\5\3\2\2\2yz\t\2\2\2z\7\3\2"+
 		"\2\2{}\5\20\t\2|~\5\n\6\2}|\3\2\2\2~\177\3\2\2\2\177}\3\2\2\2\177\u0080"+
 		"\3\2\2\2\u0080\t\3\2\2\2\u0081\u0083\5\f\7\2\u0082\u0081\3\2\2\2\u0082"+
 		"\u0083\3\2\2\2\u0083\u0085\3\2\2\2\u0084\u0086\5\16\b\2\u0085\u0084\3"+
 		"\2\2\2\u0086\u0087\3\2\2\2\u0087\u0085\3\2\2\2\u0087\u0088\3\2\2\2\u0088"+
-		"\13\3\2\2\2\u0089\u008a\7\16\2\2\u008a\u008b\7(\2\2\u008b\u008c\7&\2\2"+
+		"\13\3\2\2\2\u0089\u008a\7\r\2\2\u008a\u008b\7(\2\2\u008b\u008c\7&\2\2"+
 		"\u008c\r\3\2\2\2\u008d\u008f\5*\26\2\u008e\u0090\5> \2\u008f\u008e\3\2"+
 		"\2\2\u008f\u0090\3\2\2\2\u0090\u0092\3\2\2\2\u0091\u008d\3\2\2\2\u0092"+
 		"\u0093\3\2\2\2\u0093\u0091\3\2\2\2\u0093\u0094\3\2\2\2\u0094\u0095\3\2"+
@@ -3273,17 +3272,17 @@ public class AbcNotationParser extends Parser {
 		"\2\u00a2\u009d\3\2\2\2\u00a2\u009e\3\2\2\2\u00a2\u009f\3\2\2\2\u00a2\u00a0"+
 		"\3\2\2\2\u00a2\u00a1\3\2\2\2\u00a3\u00a6\3\2\2\2\u00a4\u00a2\3\2\2\2\u00a4"+
 		"\u00a5\3\2\2\2\u00a5\u00a7\3\2\2\2\u00a6\u00a4\3\2\2\2\u00a7\u00a8\5\32"+
-		"\16\2\u00a8\21\3\2\2\2\u00a9\u00aa\7\b\2\2\u00aa\u00ab\7\3\2\2\u00ab\u00ac"+
-		"\5\6\4\2\u00ac\23\3\2\2\2\u00ad\u00ae\7\t\2\2\u00ae\u00af\5\4\3\2\u00af"+
-		"\25\3\2\2\2\u00b0\u00b3\7\n\2\2\u00b1\u00b4\7\27\2\2\u00b2\u00b4\5\2\2"+
+		"\16\2\u00a8\21\3\2\2\2\u00a9\u00aa\7\7\2\2\u00aa\u00ab\7\3\2\2\u00ab\u00ac"+
+		"\5\6\4\2\u00ac\23\3\2\2\2\u00ad\u00ae\7\b\2\2\u00ae\u00af\5\4\3\2\u00af"+
+		"\25\3\2\2\2\u00b0\u00b3\7\t\2\2\u00b1\u00b4\7\21\2\2\u00b2\u00b4\5\2\2"+
 		"\2\u00b3\u00b1\3\2\2\2\u00b3\u00b2\3\2\2\2\u00b4\u00b6\3\2\2\2\u00b5\u00b7"+
 		"\5\6\4\2\u00b6\u00b5\3\2\2\2\u00b6\u00b7\3\2\2\2\u00b7\27\3\2\2\2\u00b8"+
-		"\u00ba\7\13\2\2\u00b9\u00bb\7\5\2\2\u00ba\u00b9\3\2\2\2\u00ba\u00bb\3"+
-		"\2\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00be\5\2\2\2\u00bd\u00bf\7\5\2\2\u00be"+
+		"\u00ba\7\n\2\2\u00b9\u00bb\7\5\2\2\u00ba\u00b9\3\2\2\2\u00ba\u00bb\3\2"+
+		"\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00be\5\2\2\2\u00bd\u00bf\7\5\2\2\u00be"+
 		"\u00bd\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00c0\3\2\2\2\u00c0\u00c1\5\6"+
-		"\4\2\u00c1\31\3\2\2\2\u00c2\u00c3\7\f\2\2\u00c3\u00c4\5\4\3\2\u00c4\33"+
-		"\3\2\2\2\u00c5\u00c6\7\r\2\2\u00c6\u00c7\5\4\3\2\u00c7\35\3\2\2\2\u00c8"+
-		"\u00c9\7\17\2\2\u00c9\u00ca\5\4\3\2\u00ca\37\3\2\2\2\u00cb\u00cd\7\20"+
+		"\4\2\u00c1\31\3\2\2\2\u00c2\u00c3\7\13\2\2\u00c3\u00c4\5\4\3\2\u00c4\33"+
+		"\3\2\2\2\u00c5\u00c6\7\f\2\2\u00c6\u00c7\5\4\3\2\u00c7\35\3\2\2\2\u00c8"+
+		"\u00c9\7\16\2\2\u00c9\u00ca\5\4\3\2\u00ca\37\3\2\2\2\u00cb\u00cd\7\17"+
 		"\2\2\u00cc\u00ce\7\5\2\2\u00cd\u00cc\3\2\2\2\u00cd\u00ce\3\2\2\2\u00ce"+
 		"\u00d2\3\2\2\2\u00cf\u00d3\5\"\22\2\u00d0\u00d3\5$\23\2\u00d1\u00d3\5"+
 		"(\25\2\u00d2\u00cf\3\2\2\2\u00d2\u00d0\3\2\2\2\u00d2\u00d1\3\2\2\2\u00d3"+
@@ -3338,7 +3337,7 @@ public class AbcNotationParser extends Parser {
 		"\u0163\5h\65\2\u0162\u0161\3\2\2\2\u0162\u0163\3\2\2\2\u0163E\3\2\2\2"+
 		"\u0164\u0166\7\5\2\2\u0165\u0164\3\2\2\2\u0165\u0166\3\2\2\2\u0166\u0167"+
 		"\3\2\2\2\u0167\u0168\t\4\2\2\u0168\u016a\5N(\2\u0169\u016b\7\5\2\2\u016a"+
-		"\u0169\3\2\2\2\u016a\u016b\3\2\2\2\u016bG\3\2\2\2\u016c\u016d\7\27\2\2"+
+		"\u0169\3\2\2\2\u016a\u016b\3\2\2\2\u016bG\3\2\2\2\u016c\u016d\7\21\2\2"+
 		"\u016dI\3\2\2\2\u016e\u016f\7%\2\2\u016fK\3\2\2\2\u0170\u0171\7%\2\2\u0171"+
 		"M\3\2\2\2\u0172\u0175\5j\66\2\u0173\u0175\5l\67\2\u0174\u0172\3\2\2\2"+
 		"\u0174\u0173\3\2\2\2\u0175O\3\2\2\2\u0176\u0179\5n8\2\u0177\u0179\5p9"+
@@ -3359,9 +3358,9 @@ public class AbcNotationParser extends Parser {
 		"\u01a0\u01a1\7\35\2\2\u01a1\u01a2\5 \21\2\u01a2\u01a3\7\36\2\2\u01a3a"+
 		"\3\2\2\2\u01a4\u01a5\7\25\2\2\u01a5c\3\2\2\2\u01a6\u01a7\7\26\2\2\u01a7"+
 		"e\3\2\2\2\u01a8\u01a9\7!\2\2\u01a9g\3\2\2\2\u01aa\u01ab\7\"\2\2\u01ab"+
-		"i\3\2\2\2\u01ac\u01ae\7\7\2\2\u01ad\u01af\7\3\2\2\u01ae\u01ad\3\2\2\2"+
+		"i\3\2\2\2\u01ac\u01ae\7\27\2\2\u01ad\u01af\7\3\2\2\u01ae\u01ad\3\2\2\2"+
 		"\u01ae\u01af\3\2\2\2\u01afk\3\2\2\2\u01b0\u01bb\7\3\2\2\u01b1\u01b3\7"+
-		"\3\2\2\u01b2\u01b4\7\7\2\2\u01b3\u01b2\3\2\2\2\u01b4\u01b5\3\2\2\2\u01b5"+
+		"\3\2\2\u01b2\u01b4\7\27\2\2\u01b3\u01b2\3\2\2\2\u01b4\u01b5\3\2\2\2\u01b5"+
 		"\u01b3\3\2\2\2\u01b5\u01b6\3\2\2\2\u01b6\u01b8\3\2\2\2\u01b7\u01b9\7\3"+
 		"\2\2\u01b8\u01b7\3\2\2\2\u01b8\u01b9\3\2\2\2\u01b9\u01bb\3\2\2\2\u01ba"+
 		"\u01b0\3\2\2\2\u01ba\u01b1\3\2\2\2\u01bbm\3\2\2\2\u01bc\u01bd\7\23\2\2"+
